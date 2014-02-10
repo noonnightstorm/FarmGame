@@ -39,7 +39,7 @@ bool StartScene::init()
 
 	// add a start layer to scene
 	CCLayer* startlayer = CCLayer::create();
-	CCLabelTTF* startgametitle = CCLabelTTF::create("Picture Matching", "Marker Felt", 36);
+	CCLabelTTF* startgametitle = CCLabelTTF::create("Farm Game", "Marker Felt", 36);
 
 	ccColor3B textcolor = {142,229,238};
 	startgametitle->setColor(textcolor);

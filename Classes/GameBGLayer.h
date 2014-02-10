@@ -10,10 +10,13 @@
 
 #include "cocos2d.h"
 
+
 class GameBGLayer: public cocos2d::CCLayer {
 public:
 	GameBGLayer();
 	virtual ~GameBGLayer();
+	bool init();
+	CREATE_FUNC(GameBGLayer);
 };
 
 #endif /* GAMEBGLAYER_H_ */
