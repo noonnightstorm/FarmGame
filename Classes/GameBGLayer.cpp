@@ -58,10 +58,10 @@ void GameBGLayer::ccTouchMoved(CCTouch* touch, CCEvent* event)
 	float now_y = now_position.y;
 	CCPoint result_postion = ccpAdd(now_position,MoveTo);
 	//越界
-	if(result_postion.x > 250 || result_postion.x < 230){
+	if(result_postion.x > 395 || result_postion.x < 85){
 		return;
 	}
-	else if(result_postion.y > 285 || result_postion.y < 35){
+	else if(result_postion.y > 435 || result_postion.y < -115){
 		return;
 	}
 
