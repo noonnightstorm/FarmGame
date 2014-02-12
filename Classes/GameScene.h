@@ -14,6 +14,10 @@ class GameScene: public cocos2d::CCScene {
 public:
 	GameScene();
 	virtual ~GameScene();
+
+	bool init();
+
+	CREATE_FUNC(GameScene);
 };
 
 #endif /* GAMESCENE_H_ */
