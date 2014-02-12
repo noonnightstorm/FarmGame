@@ -6,11 +6,12 @@
  */
 
 #include "StartScene.h"
-#include "SimpleAudioEngine.h"
 #include "GameScene.h"
+#include "cocos-ext.h"
+
 
 using namespace cocos2d;
-using namespace CocosDenshion;
+using namespace cocos2d::extension;
 
 StartScene::StartScene() {
 	// TODO Auto-generated constructor stub
@@ -65,6 +66,23 @@ bool StartScene::init()
 
 	this->addChild(startlayer,1);
 
+	//添加动画
+	//从导出文件异步加载动画
+	CCArmatureDataManager::sharedArmatureDataManager()->addArmatureFileInfo("EnemyAnimation0.png","EnemyAnimation0.plist","tauren.ExportJson");
+
+	//根据动画名称创建动画精灵
+	CCArmature *armature = CCArmature::create("tauren");
+
+	//播放指定动作
+	armature->getAnimation()->playByIndex(0);
+
+	//修改属性
+	armature->setScale(0.5f);
+
+	//设置动画精灵位置
+	armature->setPosition(200,300);
+	//添加到当前页面
+	this->addChild(armature,2);
 	return true;
 }
 void StartScene::menustartcallback(CCObject* pSender)

@@ -7,7 +7,7 @@
 
 #include "GameScene.h"
 #include "GameBGLayer.h"
-#include "SimpleAudioEngine.h"
+
 
 using namespace cocos2d;
 
