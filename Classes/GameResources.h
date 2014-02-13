@@ -10,13 +10,14 @@
 
 class GameResources {
 public:
-	static GameResources* getInstance();
+	GameResources* GetInstance();
 	virtual ~GameResources();
+	int getFood();
+	void setFood(int food);
+	int getMoney();
+	void setMoney(int money);
 private:
 	GameResources();
-	static GameResources* instance;
-	static int food;
-	static int money;
 };
 
 #endif /* GAMERESOURCES_H_ */

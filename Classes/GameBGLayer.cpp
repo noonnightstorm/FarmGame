@@ -7,12 +7,13 @@
 
 #include "GameBGLayer.h"
 #include "SimpleAudioEngine.h"
+#include "cocos-ext.h"
 
 using namespace cocos2d;
 using namespace CocosDenshion;
+using namespace cocos2d::extension;
+using namespace cocos2d::gui;
 
-
-using namespace cocos2d;
 
 
 GameBGLayer::GameBGLayer() {
@@ -36,6 +37,11 @@ bool GameBGLayer::init(){
 	bGSprite = CCSprite::create("background.png");
 	bGSprite->setPosition( ccp(size.width/2, size.height/2) );
 	this->addChild(bGSprite, 0);
+
+	/*TouchGroup* ul =TouchGroup::create();
+	ul->addWidget(GUIReader::shareReader()->widgetFromJsonFile("GameResourceUI_1/GameResourceUI_1.ExportJson"));
+	this->addChild(ul,2);*/
+
 	return true;
 }
 void GameBGLayer::registerWithTouchDispatcher()
@@ -62,6 +68,7 @@ void GameBGLayer::ccTouchMoved(CCTouch* touch, CCEvent* event)
 	float now_y = now_position.y;
 	CCPoint result_postion = ccpAdd(now_position,MoveTo);
 	//越界
+
 	if(result_postion.x > 395 || result_postion.x < 85){
 		return;
 	}
