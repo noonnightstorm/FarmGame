@@ -17,8 +17,8 @@ GameResources::~GameResources() {
 	// TODO Auto-generated destructor stub
 }
 
-static GameResources* GameResources::getInstance() {
-	if(!instance == NULL){
+GameResources* GameResources::getInstance() {
+	if(instance == NULL){
 		//init the resources
 		instance = new GameResources();
 		food = 150;
