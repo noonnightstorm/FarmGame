@@ -7,7 +7,7 @@
 
 #include "GameScene.h"
 #include "GameBGLayer.h"
-
+#include "GameMenuLayer.h"
 
 using namespace cocos2d;
 
@@ -26,7 +26,9 @@ bool GameScene::init()
 	//run the super init()
 	CCScene::init();
 	CCLayer* bGLayer = GameBGLayer::create();
-	this->addChild(bGLayer);
+	this->addChild(bGLayer,0);
+	CCLayer* menuLayer = GameMenuLayer::create();
+	this->addChild(menuLayer,1);
 	return true;
 }
 

@@ -6,7 +6,12 @@
  */
 
 #include "GameResources.h"
-#define NULL (void *)0
+#include <cstddef>
+
+static GameResources* instance;
+static int _food;
+static int _money;
+
 
 GameResources::GameResources() {
 	// TODO Auto-generated constructor stub
@@ -17,13 +22,29 @@ GameResources::~GameResources() {
 	// TODO Auto-generated destructor stub
 }
 
-GameResources* GameResources::getInstance() {
+
+GameResources* GameResources::GetInstance() {
+
 	if(instance == NULL){
 		//init the resources
 		instance = new GameResources();
-		food = 150;
-		money = 150;
+		_food = 150;
+		_money = 150;
 	}
 	return instance;
 }
+
+int GameResources::getFood(){
+	return _food;
+}
+void GameResources::setFood(int food){
+	_food = food;
+}
+int GameResources::getMoney(){
+	return _money;
+}
+void GameResources::setMoney(int money){
+	_money = money;
+}
+
 
