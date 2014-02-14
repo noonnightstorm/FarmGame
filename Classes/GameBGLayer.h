@@ -9,10 +9,11 @@
 #define GAMEBGLAYER_H_
 
 #include "cocos2d.h"
+#include "TouchListener.h"
 
 using namespace cocos2d;
 
-class GameBGLayer: public cocos2d::CCLayer {
+class GameBGLayer: public TouchListener {
 public:
 	GameBGLayer();
 	virtual ~GameBGLayer();
@@ -24,8 +25,6 @@ public:
 	CREATE_FUNC(GameBGLayer);
 
 private:
-	CCPoint beginPoint;
-	CCPoint endPoint;
 	CCSprite* bGSprite;
 };
 
