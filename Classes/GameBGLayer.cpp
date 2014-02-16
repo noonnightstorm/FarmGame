@@ -8,9 +8,7 @@
 #include "GameBGLayer.h"
 #include "TouchListener.h"
 
-
 using namespace cocos2d;
-
 
 GameBGLayer::GameBGLayer() {
 	// TODO Auto-generated constructor stub
@@ -27,7 +25,9 @@ bool GameBGLayer::init(){
 	CCSize size = CCDirector::sharedDirector()->getWinSize();
 	bGSprite = CCSprite::create("background.png");
 	bGSprite->setPosition( ccp(size.width/2, size.height/2) );
+
 	CCLog("%d %d",bGSprite->getContentSize().height,bGSprite->getContentSize().width);
+
 	this->addChild(bGSprite, 0);
 	return true;
 }
