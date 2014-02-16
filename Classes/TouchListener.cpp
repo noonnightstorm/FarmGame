@@ -49,8 +49,8 @@ void TouchListener::ccTouchMoved(CCTouch* touch, CCEvent* event)
 	origin = CCDirector::sharedDirector()->getVisibleOrigin();
 
     //最大最小偏移
-    int maxValue_top = origin.y + winSize.height/2 - (1071 - winSize.height)/2;
-    int maxValue_bottom = origin.y + winSize.height/2 + (1071 - winSize.height)/2;
+    int maxValue_top = origin.y + winSize.height/2 - (1007 - winSize.height)/2;
+    int maxValue_bottom = origin.y + winSize.height/2 + (1007 - winSize.height)/2;
     int maxValue_left = origin.x + winSize.width/2 - (1000 - winSize.width)/2;
     int maxValue_right = origin.x + winSize.width/2 + (1000 - winSize.width)/2;
 
