@@ -7,8 +7,13 @@
 
 #include "GameBGLayer.h"
 #include "TouchListener.h"
+#include "cocos-ext.h"
 
 using namespace cocos2d;
+
+using namespace cocos2d::extension;
+using namespace cocos2d::gui;
+
 
 GameBGLayer::GameBGLayer() {
 	// TODO Auto-generated constructor stub
@@ -29,6 +34,11 @@ bool GameBGLayer::init(){
 	CCLog("%d %d",bGSprite->getContentSize().height,bGSprite->getContentSize().width);
 
 	this->addChild(bGSprite, 0);
+
+	/*TouchGroup* ul =TouchGroup::create();
+	ul->addWidget(GUIReader::shareReader()->widgetFromJsonFile("GameResourceUI_1/GameResourceUI_1.ExportJson"));
+	this->addChild(ul,2);*/
+
 	return true;
 }
 void GameBGLayer::registerWithTouchDispatcher()
