@@ -7,6 +7,7 @@
 
 #include "TouchListener.h"
 #include "GameBGLayer.h"
+#include "Global.h"
 
 
 using namespace cocos2d;
@@ -49,14 +50,10 @@ void TouchListener::ccTouchMoved(CCTouch* touch, CCEvent* event)
 	origin = CCDirector::sharedDirector()->getVisibleOrigin();
 
     //最大最小偏移
-    int maxValue_top = origin.y + winSize.height/2 - (1007 - winSize.height)/2;
-    int maxValue_bottom = origin.y + winSize.height/2 + (1007 - winSize.height)/2;
-    int maxValue_left = origin.x + winSize.width/2 - (1000 - winSize.width)/2;
-    int maxValue_right = origin.x + winSize.width/2 + (1000 - winSize.width)/2;
-
-    CCLog("%d %d",winSize.height,winSize.width);
-    CCLog("%d %d",maxValue_top,maxValue_bottom);
-    CCLog("%d %d",maxValue_left,maxValue_right);
+    float maxValue_top = origin.y + winSize.height/2 - (winHeight - winSize.height)/2;
+    float maxValue_bottom = origin.y + winSize.height/2 + (winHeight - winSize.height)/2;
+    float maxValue_left = origin.x + winSize.width/2 - (winWidth - winSize.width)/2;
+    float maxValue_right = origin.x + winSize.width/2 + (winWidth - winSize.width)/2;
 
 	endPoint = touch->getLocation();
 	CCPoint MoveTo = ccpSub(endPoint,beginPoint);
@@ -67,14 +64,18 @@ void TouchListener::ccTouchMoved(CCTouch* touch, CCEvent* event)
 	float now_x = now_position.x;
 	float now_y = now_position.y;
 	CCPoint result_postion = ccpAdd(now_position,MoveTo);
+
 	//越界
-	if(result_postion.x > maxValue_right || result_postion.x < maxValue_left){
+	if(result_postion.x + this->getContentSize().width/2 > maxValue_right || result_postion.x + this->getContentSize().width/2 < maxValue_left){
+		CCLog("out!");
 		return;
 	}
-	else if(result_postion.y > maxValue_bottom || result_postion.y < maxValue_top){
+	else if(result_postion.y + this->getContentSize().height/2 > maxValue_bottom || result_postion.y + this->getContentSize().height/2 < maxValue_top){
+		CCLog("out!");
 		return;
 	}
 
+	CCLog("in!");
 	this->setPosition(ccpAdd(now_position,MoveTo));
 }
 

@@ -9,6 +9,7 @@
 #include "GameBGLayer.h"
 #include "BuildingsLayer.h"
 #include "GameMenuLayer.h"
+#include "AddBuildingLayer.h"
 
 using namespace cocos2d;
 
@@ -37,6 +38,10 @@ bool GameScene::init()
 	//添加菜单层
 	CCLayer* MenuLayer = GameMenuLayer::create();
 	this->addChild(MenuLayer,2);
+
+	//添加操作层
+	CCLayer* ABLayer = AddBuildingLayer::create();
+	this->addChild(ABLayer,3);
 
 	return true;
 }

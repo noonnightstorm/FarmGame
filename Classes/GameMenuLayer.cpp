@@ -26,15 +26,16 @@ GameMenuLayer::~GameMenuLayer() {
 bool GameMenuLayer::init() {
 	CCLayer::init();
 	//添加资源
-	TouchGroup* ul =TouchGroup::create();
-	ul->addWidget(GUIReader::shareReader()->widgetFromJsonFile("GameResourceUI_1/GameResourceUI_1.ExportJson"));
-	this->addChild(ul,2);
+//	TouchGroup* ul = TouchGroup::create();
+//	ul->addWidget(GUIReader::shareReader()->widgetFromJsonFile("NewProject_1.json"));
+//	this->addChild(ul,2);
+//
+//	UIWidget* widget = static_cast<UIWidget*>(ul->getWidgetByName("Panel_20"));
+//	UIButton* button = static_cast<UIButton*>(widget->getChildByName("menuBtn"));
+//
+//	button->addTouchEventListener(this, toucheventselector(GameMenuLayer::test));
 
-	//初始化资源
 
-	/*GameResources* resources = GameResources::GetInstance();
-	CCLog("food : %d",resources->getFood());
-	CCLog("money : %d",resources->getMoney());*/
 	return true;
 }
 void GameMenuLayer::registerWithTouchDispatcher()
@@ -57,5 +58,10 @@ void GameMenuLayer::ccTouchMoved(CCTouch* touch, CCEvent* event)
 void GameMenuLayer::ccTouchEnded(CCTouch* touch, CCEvent* event)
 {
 	TouchListener::ccTouchEnded(touch,event);
+}
+void GameMenuLayer::test(CCObject *pSender)
+{
+	CCLog("test");
+	CCDirector::sharedDirector()->end();
 }
 
