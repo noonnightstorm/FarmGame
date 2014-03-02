@@ -1,33 +1,29 @@
 /*
- * BuildingsLayer.h
+ * GameMenuLayer.h
  *
- *  Created on: Feb 13, 2014
- *      Author: c860
+ *  Created on: Feb 11, 2014
+ *      Author: noonnightstorm
  */
-#ifndef BUILDINGSLAYER_H_
-#define BUILDINGSLAYER_H_
+
+#ifndef GAMEMENULAYER_H_
+#define GAMEMENULAYER_H_
 
 #include "cocos2d.h"
 #include "TouchListener.h"
 
 using namespace cocos2d;
 
-class BuildingsLayer: public TouchListener {
+class GameMenuLayer: public TouchListener {
 public:
-	BuildingsLayer();
-	virtual ~BuildingsLayer();
+	GameMenuLayer();
+	virtual ~GameMenuLayer();
 	bool init();
 	virtual void registerWithTouchDispatcher();
 	virtual bool ccTouchBegan(CCTouch* touch, CCEvent* event);//按下
 	virtual void ccTouchMoved(CCTouch* touch, CCEvent* event);//移动
 	virtual void ccTouchEnded(CCTouch* touch, CCEvent* event);//松开
-	CREATE_FUNC(BuildingsLayer);
-
-private:
-	CCSize winSize;
-	CCPoint origin;
-	CCPoint beginPoint;
-	CCPoint endPoint;
+	virtual void test(CCObject *pSender);
+	CREATE_FUNC(GameMenuLayer);
 };
 
-#endif /* BUILDINGSLAYER_H_ */
+#endif /* GAMEMENULAYER_H_ */

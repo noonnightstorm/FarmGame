@@ -1,33 +1,29 @@
 /*
- * BuildingsLayer.h
+ * AddBuildingLayer.h
  *
- *  Created on: Feb 13, 2014
- *      Author: c860
+ *  Created on: Feb 26, 2014
+ *      Author: C860
  */
-#ifndef BUILDINGSLAYER_H_
-#define BUILDINGSLAYER_H_
+
+#ifndef ADDBUILDINGLAYER_H_
+#define ADDBUILDINGLAYER_H_
 
 #include "cocos2d.h"
 #include "TouchListener.h"
 
 using namespace cocos2d;
 
-class BuildingsLayer: public TouchListener {
+class AddBuildingLayer: public TouchListener {
 public:
-	BuildingsLayer();
-	virtual ~BuildingsLayer();
+	AddBuildingLayer();
+	virtual ~AddBuildingLayer();
 	bool init();
 	virtual void registerWithTouchDispatcher();
 	virtual bool ccTouchBegan(CCTouch* touch, CCEvent* event);//按下
 	virtual void ccTouchMoved(CCTouch* touch, CCEvent* event);//移动
 	virtual void ccTouchEnded(CCTouch* touch, CCEvent* event);//松开
-	CREATE_FUNC(BuildingsLayer);
-
-private:
-	CCSize winSize;
-	CCPoint origin;
-	CCPoint beginPoint;
-	CCPoint endPoint;
+	virtual void test(CCObject *pSender);
+	CREATE_FUNC(AddBuildingLayer);
 };
 
-#endif /* BUILDINGSLAYER_H_ */
+#endif /* ADDBUILDINGLAYER_H_ */

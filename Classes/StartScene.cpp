@@ -8,11 +8,15 @@
 #include "StartScene.h"
 #include "GameScene.h"
 #include "cocos-ext.h"
+#include "Global.h"
 
 
 using namespace cocos2d;
 using namespace cocos2d::extension;
 
+//初始化地图尺寸
+float winHeight = 0;
+float winWidth = 0;
 
 StartScene::StartScene() {
 	// TODO Auto-generated constructor stub
