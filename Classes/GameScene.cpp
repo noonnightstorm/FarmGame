@@ -7,7 +7,10 @@
 
 #include "GameScene.h"
 #include "GameBGLayer.h"
+<<<<<<< HEAD
 #include "SimpleAudioEngine.h"
+=======
+>>>>>>> c860
 
 using namespace cocos2d;
 

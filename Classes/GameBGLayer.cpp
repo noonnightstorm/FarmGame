@@ -11,6 +11,10 @@
 using namespace cocos2d;
 using namespace CocosDenshion;
 
+
+using namespace cocos2d;
+
+
 GameBGLayer::GameBGLayer() {
 	// TODO Auto-generated constructor stub
 

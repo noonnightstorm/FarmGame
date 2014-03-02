@@ -6,11 +6,20 @@
  */
 
 #include "StartScene.h"
+<<<<<<< HEAD
 #include "SimpleAudioEngine.h"
 #include "GameScene.h"
 
 using namespace cocos2d;
 using namespace CocosDenshion;
+=======
+#include "GameScene.h"
+#include "cocos-ext.h"
+
+
+using namespace cocos2d;
+using namespace cocos2d::extension;
+>>>>>>> c860
 
 StartScene::StartScene() {
 	// TODO Auto-generated constructor stub
