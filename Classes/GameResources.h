@@ -10,7 +10,7 @@
 
 class GameResources {
 public:
-	GameResources* GetInstance();
+	static GameResources* GetInstance();
 	virtual ~GameResources();
 	int getFood();
 	void setFood(int food);

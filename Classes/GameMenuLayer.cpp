@@ -25,6 +25,10 @@ GameMenuLayer::~GameMenuLayer() {
 
 bool GameMenuLayer::init() {
 	CCLayer::init();
+
+	GameResources *resource = GameResources::GetInstance();
+	CCLog("test + %d", resource->getFood());
+
 	//添加资源
 //	TouchGroup* ul = TouchGroup::create();
 //	ul->addWidget(GUIReader::shareReader()->widgetFromJsonFile("NewProject_1.json"));

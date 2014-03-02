@@ -8,7 +8,7 @@
 #include "GameResources.h"
 #include <cstddef>
 
-static GameResources* instance;
+GameResources* instance = NULL;
 static int _food;
 static int _money;
 
