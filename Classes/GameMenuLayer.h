@@ -10,8 +10,11 @@
 
 #include "cocos2d.h"
 #include "TouchListener.h"
+#include "cocos-ext.h"
 
 using namespace cocos2d;
+using namespace cocos2d::extension;
+using namespace cocos2d::gui;
 
 class GameMenuLayer: public TouchListener {
 public:
@@ -22,8 +25,14 @@ public:
 	virtual bool ccTouchBegan(CCTouch* touch, CCEvent* event);//按下
 	virtual void ccTouchMoved(CCTouch* touch, CCEvent* event);//移动
 	virtual void ccTouchEnded(CCTouch* touch, CCEvent* event);//松开
-	virtual void test(CCObject *pSender);
+	virtual void foodConsume(float dt);
 	CREATE_FUNC(GameMenuLayer);
+
+private:
+	TouchGroup* ul;
+	UIWidget* widget;
+	UILabelAtlas* food_num_label;
+	UILabelAtlas* money_num_label;
 };
 
 #endif /* GAMEMENULAYER_H_ */

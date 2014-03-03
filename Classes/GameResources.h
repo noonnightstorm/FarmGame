@@ -16,6 +16,11 @@ public:
 	void setFood(int food);
 	int getMoney();
 	void setMoney(int money);
+	int getStudent();
+	void setStudent(int student);
+	int getWorker();
+	void setWorker(int worker);
+	int getPeople();
 private:
 	GameResources();
 };

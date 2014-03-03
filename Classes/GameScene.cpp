@@ -42,7 +42,7 @@ bool GameScene::init()
 
 	//添加操作层
 	CCLayer* ABLayer = AddBuildingLayer::create();
-	this->addChild(ABLayer,3);
+	//this->addChild(ABLayer,3);
 
 	return true;
 }
