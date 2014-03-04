@@ -39,7 +39,7 @@ bool GameMenuLayer::init() {
 	money_num_label = static_cast<UILabelAtlas*>(widget->getChildByName("money_num"));
 	money_num_label->setStringValue("150");
 	//定时器
-	this->schedule(schedule_selector(GameMenuLayer::foodConsume),30);
+	this->schedule(schedule_selector(GameMenuLayer::foodConsume),60);
 
 	return true;
 }
@@ -69,10 +69,11 @@ void GameMenuLayer::foodConsume(float dt)
 	GameResources *resource = GameResources::GetInstance();
 	int people_num = resource->getPeople();
 	char const* old_food_string = food_num_label->getStringValue();
-	int new_food = atoi(old_food_string) - people_num * 5;
-	char temp_food_char[64];
+	int new_food = atoi(old_food_string) - people_num * 3;
+	resource->setFood(new_food);
+	char temp_food_char[100];
 	sprintf(temp_food_char, "%d", new_food);
 	food_num_label->setStringValue(temp_food_char);
-	CCLog("Now_Food: %d",new_food);
+	//CCLog("Now_Food: %d",new_food);
 }
 
