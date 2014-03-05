@@ -5,7 +5,7 @@
  *      Author: noonnightstorm
  */
 
-#include "/home/noonnightstorm/tool/cocos2d-x-2.2.2/samples/Cpp/farmgame/Classes/People/People.h"
+#include "People.h"
 
 People::People() {
 	// TODO Auto-generated constructor stub
@@ -15,42 +15,76 @@ People::~People() {
 	// TODO Auto-generated destructor stub
 }
 
-/*
-bool People::init() {
-	return true;
-}
-*/
-
 void People::setPosition(float new_x,float new_y){
 	_x = new_x;
 	_y = new_y;
 	_toX = _x;
 	_toY = _y;
-	_armature->setPosition(new_x,new_y);
+	_armature_positive->setPosition(_x,_y);
+	_armature_negative->setPosition(_x,_y);
+	_armature_left->setPosition(_x,_y);
+	_armature_right->setPosition(_x,_y);
 }
 
-/*float People::getX(){
-	return _x;
+CCArmature* People::getPositiveArmature(){
+	return _armature_positive;
+}
+CCArmature* People::getNegativeArmature(){
+	return _armature_negative;
+}
+CCArmature* People::getLeftArmature(){
+	return _armature_left;
+}
+CCArmature* People::getRightArmature(){
+	return _armature_right;
 }
 
-float People::getY(){
-	return _y;
-}*/
-
-CCArmature* People::getArmature(){
-	return _armature;
-}
-
-void People::moveTo(float toX,float toY){
+void People::moveTo(int type,float toX,float toY){
 	_toX = toX;
 	_toY = toY;
-	_armature->getAnimation()->playByIndex(0);
 	//向前走
-	this->schedule(schedule_selector(People::goForward),0.5);
+	if(type == GO_POSITIVE){
+		this->removeAllChildren();
+		this->addChild(_armature_positive);
+		this->schedule(schedule_selector(People::goForward),0.5);
+		_armature_positive->getAnimation()->playByIndex(0);
+	}
+	else if(type == GO_NEGATIVE){
+		this->removeAllChildren();
+		this->addChild(_armature_negative);
+		this->schedule(schedule_selector(People::goBackward),0.5);
+		_armature_negative->getAnimation()->playByIndex(0);
+	}
+	else if(type == GO_LEFT){
+		this->removeAllChildren();
+		this->addChild(_armature_left);
+		this->schedule(schedule_selector(People::goLeft),0.5);
+		_armature_left->getAnimation()->playByIndex(0);
+	}
+	else if(type == GO_RIGHT){
+		this->removeAllChildren();
+		this->addChild(_armature_right);
+		this->schedule(schedule_selector(People::goRight),0.5);
+		_armature_right->getAnimation()->playByIndex(0);
+	}
 }
 
 void People::goForward(float dt){
 	_y -= 1.5;
-	_armature->setPosition(_x,_y);
+	_armature_positive->setPosition(_x,_y);
 }
 
+void People::goBackward(float dt){
+	_y += 1.5;
+	_armature_negative->setPosition(_x,_y);
+}
+
+void People::goLeft(float dt){
+	_x -= 1.5;
+	_armature_left->setPosition(_x,_y);
+}
+
+void People::goRight(float dt){
+	_x += 1.5;
+	_armature_right->setPosition(_x,_y);
+}

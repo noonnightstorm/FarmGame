@@ -19,17 +19,17 @@ class People: public cocos2d::CCNode {
 public:
 	People();
 	virtual ~People();
-	//bool init();
 	void setPosition(float new_x,float new_y);
-/*	float getX();
-	float getY();*/
-	CCArmature* getArmature();
+	CCArmature* getPositiveArmature();
+	CCArmature* getNegativeArmature();
+	CCArmature* getLeftArmature();
+	CCArmature* getRightArmature();
 	//移动函数
-	void moveTo(float toX,float toY);
+	void moveTo(int type,float toX,float toY);
 	virtual void goForward(float dt);
-	/*virtual void goBackward(float dt);
+	virtual void goBackward(float dt);
 	virtual void goLeft(float dt);
-	virtual void goRight(float dt);*/
+	virtual void goRight(float dt);
 	//CREATE_FUNC(People);
 
 protected:
@@ -40,7 +40,15 @@ protected:
 	float _toX;
 	float _toY;
 	//动画变量
-	CCArmature* _armature;
+	CCArmature* _armature_positive;
+	CCArmature* _armature_negative;
+	CCArmature* _armature_left;
+	CCArmature* _armature_right;
+
+	const static int GO_POSITIVE = 0;
+	const static int GO_NEGATIVE = 1;
+	const static int GO_LEFT = 2;
+	const static int GO_RIGHT = 3;
 };
 
 #endif /* PEOPLE_H_ */

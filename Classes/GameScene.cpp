@@ -11,7 +11,6 @@
 #include "BuildingsLayer.h"
 #include "GameMenuLayer.h"
 #include "AddBuildingLayer.h"
-#include "GirlObject.h"
 #include "People/Girl.h"
 
 using namespace cocos2d;
@@ -50,7 +49,22 @@ bool GameScene::init()
 	Girl* girl = Girl::create();
 	girl->setPosition(200,200);
 	this->addChild(girl,4);
-	girl->moveTo(200,300);
+	girl->moveTo(0,200,300);
+
+	Girl* girl2 = Girl::create();
+	girl2->setPosition(200,200);
+	this->addChild(girl2,4);
+	girl2->moveTo(1,200,300);
+
+	Girl* girl3 = Girl::create();
+	girl3->setPosition(200,200);
+	this->addChild(girl3,4);
+	girl3->moveTo(2,200,300);
+
+	Girl* girl4 = Girl::create();
+	girl4->setPosition(200,200);
+	this->addChild(girl4,4);
+	girl4->moveTo(3,200,300);
 
 	return true;
 }
