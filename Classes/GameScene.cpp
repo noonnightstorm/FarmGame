@@ -11,7 +11,8 @@
 #include "BuildingsLayer.h"
 #include "GameMenuLayer.h"
 #include "AddBuildingLayer.h"
-#include "StudentGirl.h"
+#include "GirlObject.h"
+#include "People/Girl.h"
 
 using namespace cocos2d;
 
@@ -46,14 +47,15 @@ bool GameScene::init()
 	//this->addChild(ABLayer,3);
 
 	//test 动画
-	/*Student_Girl* girl = new Student_Girl();
+	Girl* girl = Girl::create();
 	girl->setPosition(200,200);
-	this->addChild(girl->getArmature(),4);
-	CCNode* obj = static_cast<CCNode*>(this);
-	girl->moveTo(obj,200,300);*/
+	this->addChild(girl,4);
+	girl->moveTo(200,300);
 
 	return true;
 }
 
-
+/*void GameScene::test(float dt){
+	CCLog("test");
+}*/
 

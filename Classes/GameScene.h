@@ -14,9 +14,9 @@ class GameScene: public cocos2d::CCScene {
 public:
 	GameScene();
 	virtual ~GameScene();
-
 	bool init();
 
+	/*virtual void test(float dt);*/
 	CREATE_FUNC(GameScene);
 };
 
