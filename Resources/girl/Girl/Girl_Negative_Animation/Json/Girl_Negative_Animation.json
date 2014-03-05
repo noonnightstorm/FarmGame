@@ -4,10 +4,10 @@
     {
       "strVersion": "1.2.0.1",
       "version": 1.201,
-      "name": "Girl_Positive_Animation",
+      "name": "Girl_Negative_Animation",
       "bone_data": [
         {
-          "name": "girl_positive",
+          "name": "girl_negative",
           "parent": "",
           "x": 0.0,
           "y": 0.0,
@@ -21,7 +21,7 @@
           "effectbyskeleton": false,
           "display_data": [
             {
-              "name": "girl_positive_1.png",
+              "name": "girl_negative_1.png",
               "displayType": 0,
               "skin_data": [
                 {
@@ -35,7 +35,7 @@
               ]
             },
             {
-              "name": "girl_positive_4.png",
+              "name": "girl_negative_2.png",
               "displayType": 0,
               "skin_data": [
                 {
@@ -49,7 +49,7 @@
               ]
             },
             {
-              "name": "girl_positive_2.png",
+              "name": "girl_negative_3.png",
               "displayType": 0,
               "skin_data": [
                 {
@@ -63,7 +63,7 @@
               ]
             },
             {
-              "name": "girl_positive_3.png",
+              "name": "girl_negative_4.png",
               "displayType": 0,
               "skin_data": [
                 {
@@ -83,10 +83,10 @@
   ],
   "animation_data": [
     {
-      "name": "Girl_Positive_Animation",
+      "name": "Girl_Negative_Animation",
       "mov_data": [
         {
-          "name": "girl_positive",
+          "name": "girl_negative",
           "dr": 61,
           "lp": true,
           "to": 0,
@@ -95,7 +95,7 @@
           "sc": 1.0,
           "mov_bone_data": [
             {
-              "name": "girl_positive",
+              "name": "girl_negative",
               "dl": 0.0,
               "frame_data": [
                 {
@@ -172,7 +172,7 @@
   ],
   "texture_data": [
     {
-      "name": "girl_positive_1",
+      "name": "girl_negative_1",
       "width": 18.0,
       "height": 50.0,
       "pX": 0.5,
@@ -180,7 +180,7 @@
       "plistFile": ""
     },
     {
-      "name": "girl_positive_4",
+      "name": "girl_negative_2",
       "width": 0.0,
       "height": 0.0,
       "pX": 0.5,
@@ -188,7 +188,7 @@
       "plistFile": ""
     },
     {
-      "name": "girl_positive_2",
+      "name": "girl_negative_3",
       "width": 0.0,
       "height": 0.0,
       "pX": 0.5,
@@ -196,15 +196,12 @@
       "plistFile": ""
     },
     {
-      "name": "girl_positive_3",
+      "name": "girl_negative_4",
       "width": 0.0,
       "height": 0.0,
       "pX": 0.5,
       "pY": 0.5,
       "plistFile": ""
     }
-  ],
-  "config_file_path": [
-    "Girl_Positive_Animation0.plist"
   ]
 }

@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<AnimationProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <filePath>E:\CocoStudio\Girl\Girl_Negative_Animation\Girl_Negative_Animation.xml.animation</filePath>
+  <Version>1.2.0.1</Version>
+  <Name>Girl_Negative_Animation</Name>
+  <ProjectDir>E:\CocoStudio\Girl\Girl_Negative_Animation</ProjectDir>
+  <JsonFileName>Girl_Negative_Animation.json</JsonFileName>
+  <Resources>E:\CocoStudio\Girl\Girl_Negative_Animation\Resources</Resources>
+  <JsonFolder>E:\CocoStudio\Girl\Girl_Negative_Animation\Json</JsonFolder>
+  <JsonList />
+  <CanvasSize>
+    <Width>0</Width>
+    <Height>0</Height>
+  </CanvasSize>
+  <bBatchImage>false</bBatchImage>
+</AnimationProject>

@@ -25,8 +25,6 @@ bool Girl::init() {
 	_armature_left = CCArmature::create("Girl_Left_Animation");
 	CCArmatureDataManager::sharedArmatureDataManager()->addArmatureFileInfo("girl/Girl_Right_Animation/Girl_Right_Animation0.png","girl/Girl_Right_Animation/Girl_Right_Animation0.plist","girl/Girl_Right_Animation/Girl_Right_Animation.ExportJson");
 	_armature_right = CCArmature::create("Girl_Right_Animation");
-	//CCArmatureDataManager::sharedArmatureDataManager()->purge();
-	//_armature->getAnimation()->stop();
 	return true;
 }
 
