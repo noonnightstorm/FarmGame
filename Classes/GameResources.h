@@ -10,12 +10,17 @@
 
 class GameResources {
 public:
-	GameResources* GetInstance();
+	static GameResources* GetInstance();
 	virtual ~GameResources();
 	int getFood();
 	void setFood(int food);
 	int getMoney();
 	void setMoney(int money);
+	int getStudent();
+	void setStudent(int student);
+	int getWorker();
+	void setWorker(int worker);
+	int getPeople();
 private:
 	GameResources();
 };

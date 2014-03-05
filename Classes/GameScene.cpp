@@ -7,9 +7,12 @@
 
 #include "GameScene.h"
 #include "GameBGLayer.h"
+
 #include "BuildingsLayer.h"
 #include "GameMenuLayer.h"
 #include "AddBuildingLayer.h"
+#include "GirlObject.h"
+#include "People/Girl.h"
 
 using namespace cocos2d;
 
@@ -41,10 +44,18 @@ bool GameScene::init()
 
 	//添加操作层
 	CCLayer* ABLayer = AddBuildingLayer::create();
-	this->addChild(ABLayer,3);
+	//this->addChild(ABLayer,3);
+
+	//test 动画
+	Girl* girl = Girl::create();
+	girl->setPosition(200,200);
+	this->addChild(girl,4);
+	girl->moveTo(200,300);
 
 	return true;
 }
 
-
+/*void GameScene::test(float dt){
+	CCLog("test");
+}*/
 
