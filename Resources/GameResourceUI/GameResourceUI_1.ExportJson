@@ -105,7 +105,7 @@
           "touchAble": false,
           "useMergedTexture": false,
           "visible": true,
-          "width": 23,
+          "width": 24,
           "x": 367,
           "y": 294,
           "charMapFile": null,
@@ -115,9 +115,9 @@
             "resourceType": 0
           },
           "itemHeight": 32,
-          "itemWidth": 23,
+          "itemWidth": 24,
           "startCharMap": "0",
-          "stringValue": "1"
+          "stringValue": "0"
         }
       },
       {
@@ -208,7 +208,7 @@
           "touchAble": false,
           "useMergedTexture": false,
           "visible": true,
-          "width": 23,
+          "width": 24,
           "x": 453,
           "y": 294,
           "charMapFile": null,
@@ -218,9 +218,9 @@
             "resourceType": 0
           },
           "itemHeight": 32,
-          "itemWidth": 23,
+          "itemWidth": 24,
           "startCharMap": "0",
-          "stringValue": "1"
+          "stringValue": "0"
         }
       },
       {
