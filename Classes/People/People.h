@@ -20,10 +20,8 @@ public:
 	People();
 	virtual ~People();
 	void setPosition(float new_x,float new_y);
-	CCArmature* getPositiveArmature();
-	CCArmature* getNegativeArmature();
-	CCArmature* getLeftArmature();
-	CCArmature* getRightArmature();
+	CCArmature* getArmature();
+
 	//移动函数
 	void moveTo(int type,float toX,float toY);
 	virtual void goForward(float dt);
@@ -40,10 +38,7 @@ protected:
 	float _toX;
 	float _toY;
 	//动画变量
-	CCArmature* _armature_positive;
-	CCArmature* _armature_negative;
-	CCArmature* _armature_left;
-	CCArmature* _armature_right;
+	CCArmature* _armature;
 
 	const static int GO_POSITIVE = 0;
 	const static int GO_NEGATIVE = 1;
