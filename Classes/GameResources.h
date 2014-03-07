@@ -21,6 +21,14 @@ public:
 	int getWorker();
 	void setWorker(int worker);
 	int getPeople();
+	void setWinHeight(float winHeight);
+	float getWinHeight();
+	void setWinWidth(float winWidth);
+	float getWinWidth();
+	void initMap();
+	bool isUsed(int x,int y);
+	int getRealHeight(int y);
+	int getRealWidth(int x);
 private:
 	GameResources();
 };

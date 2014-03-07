@@ -8,7 +8,7 @@
 #include "GameBGLayer.h"
 #include "TouchListener.h"
 #include "cocos-ext.h"
-#include "Global.h"
+#include "GameResources.h"
 
 using namespace cocos2d;
 
@@ -27,13 +27,17 @@ GameBGLayer::~GameBGLayer() {
 
 bool GameBGLayer::init(){
 	TouchListener::init();
+
+	//获取公共资源
+	GameResources *resource = GameResources::GetInstance();
+
 	//添加背景
 	CCSize size = CCDirector::sharedDirector()->getWinSize();
 	bGSprite = CCSprite::create("background.png");
 	bGSprite->setPosition( ccp(size.width/2, size.height/2) );
 
-	winHeight = bGSprite->getContentSize().height;
-	winWidth = bGSprite->getContentSize().width;
+	resource->setWinHeight(bGSprite->getContentSize().height);
+	resource->setWinWidth(bGSprite->getContentSize().width);
 
 	this->addChild(bGSprite, 0);
 

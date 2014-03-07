@@ -6,7 +6,7 @@
  */
 #include "BuildingsLayer.h"
 #include "TouchListener.h"
-
+#include "GameResources.h"
 
 using namespace cocos2d;
 
@@ -22,10 +22,19 @@ BuildingsLayer::~BuildingsLayer() {
 
 bool BuildingsLayer::init(){
 	TouchListener::init();
+	GameResources* res = GameResources::GetInstance();
+
+	CCSize size;
+	size.height = res->getWinHeight();
+	size.width = res->getWinWidth();
+	this->setContentSize(size);
+
 	winSize = CCDirector::sharedDirector()->getVisibleSize();
 	origin = CCDirector::sharedDirector()->getVisibleOrigin();
 	CCSprite* canteen = CCSprite::create("canteen.png");
-	canteen->setPosition( ccp(origin.x + winSize.width/2, origin.y + winSize.height/2) );
+	canteen->setPosition( ccp(res->getRealWidth(7),res->getRealHeight(7)) );
+	CCLog("%d %d",res->getRealHeight(15),res->getRealWidth(15));
+	//	canteen->setPosition( ccp(origin.x + winSize.width/2, origin.y + winSize.height/2) );
 	this->addChild(canteen);
 
 	return true;
