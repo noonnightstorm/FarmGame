@@ -5,7 +5,7 @@
  *      Author: noonnightstorm
  */
 
-#include "/home/noonnightstorm/tool/cocos2d-x-2.2.2/samples/Cpp/farmgame/Classes/People/People.h"
+#include "People.h"
 
 People::People() {
 	// TODO Auto-generated constructor stub
@@ -15,38 +15,40 @@ People::~People() {
 	// TODO Auto-generated destructor stub
 }
 
-/*
-bool People::init() {
-	return true;
-}
-*/
-
 void People::setPosition(float new_x,float new_y){
 	_x = new_x;
 	_y = new_y;
 	_toX = _x;
 	_toY = _y;
-	_armature->setPosition(new_x,new_y);
+	_armature->setPosition(_x,_y);
 }
-
-/*float People::getX(){
-	return _x;
-}
-
-float People::getY(){
-	return _y;
-}*/
 
 CCArmature* People::getArmature(){
 	return _armature;
 }
 
-void People::moveTo(float toX,float toY){
+void People::moveTo(int type,float toX,float toY){
 	_toX = toX;
 	_toY = toY;
-	_armature->getAnimation()->playByIndex(0);
+	this->removeAllChildren();
+	this->addChild(_armature);
 	//向前走
-	this->schedule(schedule_selector(People::goForward),0.5);
+	if(type == GO_POSITIVE){
+		this->schedule(schedule_selector(People::goForward),0.5);
+		_armature->getAnimation()->play("positive");
+	}
+	else if(type == GO_NEGATIVE){
+		this->schedule(schedule_selector(People::goBackward),0.5);
+		_armature->getAnimation()->play("negative");
+	}
+	else if(type == GO_LEFT){
+		this->schedule(schedule_selector(People::goLeft),0.5);
+		_armature->getAnimation()->play("left");
+	}
+	else if(type == GO_RIGHT){
+		this->schedule(schedule_selector(People::goRight),0.5);
+		_armature->getAnimation()->play("right");
+	}
 }
 
 void People::goForward(float dt){
@@ -54,3 +56,17 @@ void People::goForward(float dt){
 	_armature->setPosition(_x,_y);
 }
 
+void People::goBackward(float dt){
+	_y += 1.5;
+	_armature->setPosition(_x,_y);
+}
+
+void People::goLeft(float dt){
+	_x -= 1.5;
+	_armature->setPosition(_x,_y);
+}
+
+void People::goRight(float dt){
+	_x += 1.5;
+	_armature->setPosition(_x,_y);
+}

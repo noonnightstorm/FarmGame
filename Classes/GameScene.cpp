@@ -11,6 +11,8 @@
 #include "BuildingsLayer.h"
 #include "GameMenuLayer.h"
 #include "AddBuildingLayer.h"
+#include "People/Girl.h"
+#include "People/CookMan.h"
 
 using namespace cocos2d;
 
@@ -43,6 +45,47 @@ bool GameScene::init()
 	//添加操作层
 	CCLayer* ABLayer = AddBuildingLayer::create();
 	//this->addChild(ABLayer,3);
+
+	CookMan* cookMan = CookMan::create();
+	cookMan->setPosition(200,100);
+	this->addChild(cookMan,4);
+	cookMan->moveTo(0,200,300);
+
+	CookMan* cookMan1 = CookMan::create();
+	cookMan1->setPosition(200,100);
+	this->addChild(cookMan1,4);
+	cookMan1->moveTo(1,200,300);
+
+	CookMan* cookMan2 = CookMan::create();
+	cookMan2->setPosition(200,100);
+	this->addChild(cookMan2,4);
+	cookMan2->moveTo(2,200,300);
+
+	CookMan* cookMan3 = CookMan::create();
+	cookMan3->setPosition(200,100);
+	this->addChild(cookMan3,4);
+	cookMan3->moveTo(3,200,300);
+
+	//girl 动画
+	Girl* girl = Girl::create();
+	girl->setPosition(200,200);
+	this->addChild(girl,4);
+	girl->moveTo(0,200,300);
+
+	Girl* girl2 = Girl::create();
+	girl2->setPosition(200,200);
+	this->addChild(girl2,4);
+	girl2->moveTo(1,200,300);
+
+	Girl* girl3 = Girl::create();
+	girl3->setPosition(200,200);
+	this->addChild(girl3,4);
+	girl3->moveTo(2,200,300);
+
+	Girl* girl4 = Girl::create();
+	girl4->setPosition(200,200);
+	this->addChild(girl4,4);
+	girl4->moveTo(3,200,300);
 
 	return true;
 }
