@@ -38,6 +38,10 @@ bool GameMenuLayer::init() {
 	food_num_label->setStringValue("150");
 	money_num_label = static_cast<UILabelAtlas*>(widget->getChildByName("money_num"));
 	money_num_label->setStringValue("150");
+	worker_num_label = static_cast<UILabelAtlas*>(widget->getChildByName("worker_num"));
+	worker_num_label->setStringValue("2");
+	student_num_label = static_cast<UILabelAtlas*>(widget->getChildByName("student_num"));
+	student_num_label->setStringValue("2");
 	//定时器
 	this->schedule(schedule_selector(GameMenuLayer::foodConsume),60);
 

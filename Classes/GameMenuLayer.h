@@ -33,6 +33,8 @@ private:
 	UIWidget* widget;
 	UILabelAtlas* food_num_label;
 	UILabelAtlas* money_num_label;
+	UILabelAtlas* student_num_label;
+	UILabelAtlas* worker_num_label;
 };
 
 #endif /* GAMEMENULAYER_H_ */
