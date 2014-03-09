@@ -34,7 +34,7 @@ void People::moveTo(int type,float toX,float toY){
 	this->addChild(_armature);
 	//向前走
 	if(type == GO_POSITIVE){
-		this->schedule(schedule_selector(People::goForward),0.5);
+		this->schedule(schedule_selector(People::goForward),0.5,10,0);
 		_armature->getAnimation()->play("positive");
 	}
 	else if(type == GO_NEGATIVE){
