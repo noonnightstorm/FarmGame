@@ -13,6 +13,7 @@
 #include "AddBuildingLayer.h"
 #include "People/Girl.h"
 #include "People/CookMan.h"
+#include "People/Worker.h"
 
 using namespace cocos2d;
 
@@ -86,6 +87,27 @@ bool GameScene::init()
 	girl4->setPosition(200,200);
 	this->addChild(girl4,4);
 	girl4->moveTo(3,200,300);
+
+	//worker 动画
+	Worker* worker = Worker::create();
+	worker->setPosition(300,200);
+	this->addChild(worker,4);
+	worker->moveTo(0,200,300);
+
+	Worker* worker1 = Worker::create();
+	worker1->setPosition(300,200);
+	this->addChild(worker1,4);
+	worker1->moveTo(1,200,300);
+
+	Worker* worker2 = Worker::create();
+	worker2->setPosition(300,200);
+	this->addChild(worker2,4);
+	worker2->moveTo(2,200,300);
+
+	Worker* worker3 = Worker::create();
+	worker3->setPosition(300,200);
+	this->addChild(worker3,4);
+	worker3->moveTo(3,200,300);
 
 	return true;
 }

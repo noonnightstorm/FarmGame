@@ -5,7 +5,7 @@
  *      Author: noonnightstorm
  */
 
-#include "/home/noonnightstorm/tool/cocos2d-x-2.2.2/samples/Cpp/farmgame/Classes/People/CookMan.h"
+#include "CookMan.h"
 
 CookMan::CookMan() {
 	// TODO Auto-generated constructor stub
@@ -17,7 +17,7 @@ CookMan::~CookMan() {
 }
 
 bool CookMan::init() {
-	CCArmatureDataManager::sharedArmatureDataManager()->addArmatureFileInfo("cook/man/man0.png","cook/man/man0.plist","cook/man/man.ExportJson");
+	CCArmatureDataManager::sharedArmatureDataManager()->addArmatureFileInfo("People/cook/man/man0.png","People/cook/man/man0.plist","People/cook/man/man.ExportJson");
 	_armature = CCArmature::create("man");
 	return true;
 }
