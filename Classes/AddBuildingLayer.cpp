@@ -35,8 +35,8 @@ bool AddBuildingLayer::init() {
 	techBuilding->setPosition( ccp(origin.x + winSize.width/2, origin.y + winSize.height/2) );
 	this->addChild(techBuilding);
 
-	CCMenuItemImage* okBtn = CCMenuItemImage::create("button.png",
-				"button.png",
+	CCMenuItemImage* okBtn = CCMenuItemImage::create("ok.png",
+				"ok.png",
 				this,
 				menu_selector(AddBuildingLayer::test));
 	okBtn->setPosition(ccp(origin.x + okBtn->getContentSize().width/2,origin.y + okBtn->getContentSize().height/2));

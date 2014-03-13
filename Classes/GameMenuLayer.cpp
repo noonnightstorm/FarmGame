@@ -9,6 +9,7 @@
 #include "GameMenuLayer.h"
 #include "GameResources.h"
 #include "TouchListener.h"
+#include "AddBuildingLayer.h"
 #include "cocos-ext.h"
 
 using namespace std;
@@ -42,8 +43,47 @@ bool GameMenuLayer::init() {
 	worker_num_label->setStringValue("2");
 	student_num_label = static_cast<UILabelAtlas*>(widget->getChildByName("student_num"));
 	student_num_label->setStringValue("2");
+
 	//定时器
 	this->schedule(schedule_selector(GameMenuLayer::foodConsume),60);
+
+	//添加菜单层
+	CCMenu* menu = CCMenu::create();
+	menu->setPosition(CCPointZero);
+	CCSprite* menuBg = CCSprite::create("menu.png");
+	CCSize size = CCDirector::sharedDirector()->getWinSize();
+	menuBg->setPosition(ccp(size.width/2,size.height/2));
+	menu->addChild(menuBg,0);
+
+	CCMenuItemImage* teachBuilding = CCMenuItemImage::create(
+	    "teachBuilding.png",
+	    "teachBuilding.png",
+	    this,
+	    menu_selector(GameMenuLayer::addTeachBuilding));
+	teachBuilding->setPosition(ccp(180,200));
+
+	menu->addChild(teachBuilding,1);
+
+	CCMenuItemImage* cantBuilding = CCMenuItemImage::create(
+		    "canteen.png",
+		    "canteen.png",
+		    this,
+		    menu_selector(GameMenuLayer::addCanteenBuilding));
+	cantBuilding->setPosition(ccp(300,200));
+
+	menu->addChild(cantBuilding,1);
+
+	CCMenuItemImage* cancelBtn = CCMenuItemImage::create(
+			    "cancel.png",
+			    "cancel.png",
+			    this,
+			    menu_selector(GameMenuLayer::closeMenu));
+	cancelBtn->setPosition(ccp(350,80));
+
+	menu->addChild(cancelBtn,1);
+
+	this->addChild(menu,3,8);
+
 
 	return true;
 }
@@ -80,4 +120,17 @@ void GameMenuLayer::foodConsume(float dt)
 	food_num_label->setStringValue(temp_food_char);
 	//CCLog("Now_Food: %d",new_food);
 }
-
+void GameMenuLayer::addTeachBuilding(CCObject *pSender, TouchEventType type)
+{
+	this->removeChildByTag(8);
+	CCLayer* ABLayer = AddBuildingLayer::create();
+	this->addChild(ABLayer,3);
+}
+void GameMenuLayer::addCanteenBuilding(CCObject *pSender, TouchEventType type)
+{
+	CCLog("click!");
+}
+void GameMenuLayer::closeMenu(CCObject *pSender, TouchEventType type)
+{
+	this->removeChildByTag(8);
+}

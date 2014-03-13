@@ -26,11 +26,15 @@ public:
 	virtual void ccTouchMoved(CCTouch* touch, CCEvent* event);//移动
 	virtual void ccTouchEnded(CCTouch* touch, CCEvent* event);//松开
 	virtual void foodConsume(float dt);
+	virtual void addTeachBuilding(CCObject *pSender, TouchEventType type);
+	virtual void addCanteenBuilding(CCObject *pSender, TouchEventType type);
+	virtual void closeMenu(CCObject *pSender, TouchEventType type);
 	CREATE_FUNC(GameMenuLayer);
 
 private:
 	TouchGroup* ul;
 	UIWidget* widget;
+	UIImageView* menuBtn;
 	UILabelAtlas* food_num_label;
 	UILabelAtlas* money_num_label;
 	UILabelAtlas* student_num_label;
