@@ -16,16 +16,17 @@ using namespace cocos2d;
 using namespace cocos2d::extension;
 using namespace cocos2d::gui;
 
-class GameMenuLayer: public TouchListener {
+class GameMenuLayer: public cocos2d::CCLayer {
 public:
 	GameMenuLayer();
 	virtual ~GameMenuLayer();
 	bool init();
-	virtual void registerWithTouchDispatcher();
-	virtual bool ccTouchBegan(CCTouch* touch, CCEvent* event);//按下
-	virtual void ccTouchMoved(CCTouch* touch, CCEvent* event);//移动
-	virtual void ccTouchEnded(CCTouch* touch, CCEvent* event);//松开
+	/*virtual void registerWithTouchDispatcher();
+	virtual bool ccTouchBegan(CCTouch* touch, CCEvent* event);*/
+	/*virtual void ccTouchMoved(CCTouch* touch, CCEvent* event);
+	virtual void ccTouchEnded(CCTouch* touch, CCEvent* event);*/
 	virtual void foodConsume(float dt);
+	virtual void showMenu(CCObject *pSender, TouchEventType type);
 	virtual void addTeachBuilding(CCObject *pSender, TouchEventType type);
 	virtual void addCanteenBuilding(CCObject *pSender, TouchEventType type);
 	virtual void closeMenu(CCObject *pSender, TouchEventType type);
@@ -39,6 +40,7 @@ private:
 	UILabelAtlas* money_num_label;
 	UILabelAtlas* student_num_label;
 	UILabelAtlas* worker_num_label;
+	UIButton* menu_btn;
 };
 
 #endif /* GAMEMENULAYER_H_ */

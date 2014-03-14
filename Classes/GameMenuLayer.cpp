@@ -27,7 +27,12 @@ GameMenuLayer::~GameMenuLayer() {
 }
 
 bool GameMenuLayer::init() {
-	CCLayer::init();
+	if (!CCLayer::init() )
+	{
+		return false;
+	}
+	//设置为可点击
+	this->setTouchEnabled(true);
 
 	//添加资源
 	ul = TouchGroup::create();
@@ -43,63 +48,28 @@ bool GameMenuLayer::init() {
 	worker_num_label->setStringValue("2");
 	student_num_label = static_cast<UILabelAtlas*>(widget->getChildByName("student_num"));
 	student_num_label->setStringValue("2");
+	menu_btn = static_cast<UIButton*>(widget->getChildByName("menu"));
+	menu_btn->setTouchEnabled(true);
+	menu_btn->addTouchEventListener(this,toucheventselector(GameMenuLayer::showMenu));
 
 	//定时器
 	this->schedule(schedule_selector(GameMenuLayer::foodConsume),60);
 
-	//添加菜单层
-	CCMenu* menu = CCMenu::create();
-	menu->setPosition(CCPointZero);
-	CCSprite* menuBg = CCSprite::create("menu.png");
-	CCSize size = CCDirector::sharedDirector()->getWinSize();
-	menuBg->setPosition(ccp(size.width/2,size.height/2));
-	menu->addChild(menuBg,0);
-
-	CCMenuItemImage* teachBuilding = CCMenuItemImage::create(
-	    "teachBuilding.png",
-	    "teachBuilding.png",
-	    this,
-	    menu_selector(GameMenuLayer::addTeachBuilding));
-	teachBuilding->setPosition(ccp(180,200));
-
-	menu->addChild(teachBuilding,1);
-
-	CCMenuItemImage* cantBuilding = CCMenuItemImage::create(
-		    "canteen.png",
-		    "canteen.png",
-		    this,
-		    menu_selector(GameMenuLayer::addCanteenBuilding));
-	cantBuilding->setPosition(ccp(300,200));
-
-	menu->addChild(cantBuilding,1);
-
-	CCMenuItemImage* cancelBtn = CCMenuItemImage::create(
-			    "cancel.png",
-			    "cancel.png",
-			    this,
-			    menu_selector(GameMenuLayer::closeMenu));
-	cancelBtn->setPosition(ccp(350,80));
-
-	menu->addChild(cancelBtn,1);
-
-	this->addChild(menu,3,8);
-
-
 	return true;
 }
-void GameMenuLayer::registerWithTouchDispatcher()
+/*void GameMenuLayer::registerWithTouchDispatcher()
 {
-	TouchListener::registerWithTouchDispatcher();
+	CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this,0,false);
 }
 
 
 bool GameMenuLayer::ccTouchBegan(CCTouch* touch, CCEvent* event)
 {
-	TouchListener::ccTouchBegan(touch,event);
+	CCLog("begin!!!");
 	return true;
-}
+}*/
 
-void GameMenuLayer::ccTouchMoved(CCTouch* touch, CCEvent* event)
+/*void GameMenuLayer::ccTouchMoved(CCTouch* touch, CCEvent* event)
 {
 	TouchListener::ccTouchMoved(touch,event);
 }
@@ -107,7 +77,7 @@ void GameMenuLayer::ccTouchMoved(CCTouch* touch, CCEvent* event)
 void GameMenuLayer::ccTouchEnded(CCTouch* touch, CCEvent* event)
 {
 	TouchListener::ccTouchEnded(touch,event);
-}
+}*/
 void GameMenuLayer::foodConsume(float dt)
 {
 	GameResources *resource = GameResources::GetInstance();
@@ -129,6 +99,47 @@ void GameMenuLayer::addTeachBuilding(CCObject *pSender, TouchEventType type)
 void GameMenuLayer::addCanteenBuilding(CCObject *pSender, TouchEventType type)
 {
 	CCLog("click!");
+}
+void GameMenuLayer::showMenu(CCObject *pSender, TouchEventType type)
+{
+	if(type == TOUCH_EVENT_ENDED){
+		//添加菜单层
+		CCMenu* menu = CCMenu::create();
+		menu->setPosition(CCPointZero);
+		CCSprite* menuBg = CCSprite::create("menu.png");
+		CCSize size = CCDirector::sharedDirector()->getWinSize();
+		menuBg->setPosition(ccp(size.width/2,size.height/2));
+		menu->addChild(menuBg,0);
+
+		CCMenuItemImage* teachBuilding = CCMenuItemImage::create(
+			"teachBuilding.png",
+			"teachBuilding.png",
+			this,
+			menu_selector(GameMenuLayer::addTeachBuilding));
+		teachBuilding->setPosition(ccp(180,200));
+
+		menu->addChild(teachBuilding,1);
+
+		CCMenuItemImage* cantBuilding = CCMenuItemImage::create(
+				"canteen.png",
+				"canteen.png",
+				this,
+				menu_selector(GameMenuLayer::addCanteenBuilding));
+		cantBuilding->setPosition(ccp(300,200));
+
+		menu->addChild(cantBuilding,1);
+
+		CCMenuItemImage* cancelBtn = CCMenuItemImage::create(
+					"cancel.png",
+					"cancel.png",
+					this,
+					menu_selector(GameMenuLayer::closeMenu));
+		cancelBtn->setPosition(ccp(350,80));
+
+		menu->addChild(cancelBtn,1);
+
+		this->addChild(menu,3,8);
+	}
 }
 void GameMenuLayer::closeMenu(CCObject *pSender, TouchEventType type)
 {
