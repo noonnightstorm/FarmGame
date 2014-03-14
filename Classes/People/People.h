@@ -28,6 +28,7 @@ public:
 	virtual void goBackward(float dt);
 	virtual void goLeft(float dt);
 	virtual void goRight(float dt);
+	virtual void go(float dt);
 
 	//BFS
 	void BFS(int FX,int FY,int TX,int TY);
@@ -51,12 +52,17 @@ protected:
 	const static int GO_RIGHT = 3;
 
 private:
+	const static int RIGHT = 0;
+	const static int LEFT = 2;
+	const static int DOWN = 4;
+	const static int UP = 6;
 	struct local{
 		int x;
 		int y;
 		int dir;
 	}list[1100];
 	int vis[33][33],pre[1100],dir_int[67],count;
+	int frame_count,frame_index;
 };
 
 #endif /* PEOPLE_H_ */

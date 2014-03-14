@@ -58,26 +58,60 @@ CCArmature* People::getArmature(){
 	}
 }*/
 
+void  People::go(float dt){
+	if(frame_count % 20 == 0){
+		frame_count = 0;
+		_armature->getAnimation()->stop();
+		CCLog("sec : %d",frame_index);
+		switch(dir_int[frame_index]){
+			case LEFT :
+				_armature->getAnimation()->play("left");
+				break;
+			case RIGHT :
+				_armature->getAnimation()->play("right");
+				break;
+			case DOWN :
+				_armature->getAnimation()->play("positive");
+				break;
+			case UP :
+				_armature->getAnimation()->play("negative");
+				break;
+		}
+		frame_index++;
+	}
+	switch(dir_int[frame_index-1]){
+		case LEFT :
+			goLeft(dt);
+			break;
+		case RIGHT :
+			goRight(dt);
+			break;
+		case DOWN :
+			goForward(dt);
+			break;
+		case UP :
+			goBackward(dt);
+			break;
+	}
+	frame_count++;
+}
+
 void People::goForward(float dt){
-	_armature->getAnimation()->play("positive");
 	_y -= 1.5;
 	_armature->setPosition(_x,_y);
 }
 
 void People::goBackward(float dt){
-	_armature->getAnimation()->play("negative");
 	_y += 1.5;
 	_armature->setPosition(_x,_y);
 }
 
 void People::goLeft(float dt){
-	_armature->getAnimation()->play("left");
 	_x -= 1.5;
 	_armature->setPosition(_x,_y);
 }
 
 void People::goRight(float dt){
-	_armature->getAnimation()->play("right");
 	_x += 1.5;
 	_armature->setPosition(_x,_y);
 }
@@ -109,7 +143,6 @@ void People::BFS(int FX,int FY,int TX,int TY){
 		f_x = list[head].x;
 		f_y = list[head].y;
 		if(f_x == TX && f_y == TY){
-			CCLog("Get the target!");
 			findPath(head);
 			move();
 			return ;
@@ -145,28 +178,12 @@ void People::findPath(int x){
 	findPath(t);
 	dir_int[count++] = list[x].dir;
 }
+
 void People::move(){
-	const int RIGHT = 0;
-	const int LEFT = 2;
-	const int DOWN = 4;
-	const int UP = 6;
 	this->removeAllChildren();
 	this->addChild(_armature);
-
-	for(int i = 0;i < count;i++){
-		switch(dir_int[i]){
-			case LEFT :
-				this->schedule(schedule_selector(People::goLeft),0.5,20,0.5*20*i);
-				break;
-			case RIGHT :
-				this->schedule(schedule_selector(People::goRight),0.5,20,0.5*20*i);
-				break;
-			case DOWN :
-				this->schedule(schedule_selector(People::goForward),0.5,20,0.5*20*i);
-				break;
-			case UP :
-				this->schedule(schedule_selector(People::goBackward),0.5,20,0.5*20*i);
-				break;
-		}
-	}
+	frame_index = 0;
+	frame_count = 0;
+	//CCLog("total : %d",count*20);
+	this->schedule(schedule_selector(People::go),0.5,count*20,0);
 }

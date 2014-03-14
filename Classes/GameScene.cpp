@@ -110,7 +110,7 @@ bool GameScene::init()
 	Girl* girl4 = Girl::create();
 	girl4->setPosition(200,200);
 	this->addChild(girl4,4);
-	girl4->BFS(0,0,32,32);
+	girl4->BFS(0,0,2,2);
 
 	return true;
 }
