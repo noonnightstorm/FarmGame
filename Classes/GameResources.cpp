@@ -94,6 +94,10 @@ void GameResources::initMap()
 		}
 	}
 }
+int GameResources::getMapXY(int x, int y){
+	return map[x][y];
+}
+
 bool GameResources::isUsed(int x,int y)
 {
 	if(map[x][y]==1) {

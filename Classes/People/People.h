@@ -23,11 +23,16 @@ public:
 	CCArmature* getArmature();
 
 	//移动函数
-	void moveTo(int type,float toX,float toY);
+	//void moveTo(int type,float toX,float toY);
 	virtual void goForward(float dt);
 	virtual void goBackward(float dt);
 	virtual void goLeft(float dt);
 	virtual void goRight(float dt);
+
+	//BFS
+	void BFS(int FX,int FY,int TX,int TY);
+	void findPath(int head);
+	void move();
 	//CREATE_FUNC(People);
 
 protected:
@@ -44,6 +49,14 @@ protected:
 	const static int GO_NEGATIVE = 1;
 	const static int GO_LEFT = 2;
 	const static int GO_RIGHT = 3;
+
+private:
+	struct local{
+		int x;
+		int y;
+		int dir;
+	}list[1100];
+	int vis[33][33],pre[1100],dir_int[67],count;
 };
 
 #endif /* PEOPLE_H_ */

@@ -26,6 +26,7 @@ public:
 	void setWinWidth(float winWidth);
 	float getWinWidth();
 	void initMap();
+	int getMapXY(int x, int y);
 	bool isUsed(int x,int y);
 	int getRealHeight(int y);
 	int getRealWidth(int x);

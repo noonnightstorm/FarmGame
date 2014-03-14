@@ -43,11 +43,9 @@ bool GameScene::init()
 	CCLayer* MenuLayer = GameMenuLayer::create();
 	this->addChild(MenuLayer,2);
 
-	//添加操作层
-	CCLayer* ABLayer = AddBuildingLayer::create();
-	//this->addChild(ABLayer,3);
 
-	CookMan* cookMan = CookMan::create();
+
+	/*CookMan* cookMan = CookMan::create();
 	cookMan->setPosition(200,100);
 	this->addChild(cookMan,4);
 	cookMan->moveTo(0,200,300);
@@ -107,7 +105,12 @@ bool GameScene::init()
 	Worker* worker3 = Worker::create();
 	worker3->setPosition(300,200);
 	this->addChild(worker3,4);
-	worker3->moveTo(3,200,300);
+	worker3->moveTo(3,200,300);*/
+
+	Girl* girl4 = Girl::create();
+	girl4->setPosition(200,200);
+	this->addChild(girl4,4);
+	girl4->BFS(0,0,32,32);
 
 	return true;
 }
