@@ -7,6 +7,9 @@
 
 #include "GameResources.h"
 #include <cstddef>
+#include "cocos2d.h"
+
+using namespace cocos2d;
 
 GameResources* instance = NULL;
 static int _food;
@@ -17,6 +20,7 @@ static int _worker;
 static float _winHeight;
 static float _winWidth;
 static int map[33][33];
+static CCLayer* _mapLayer;
 
 GameResources::GameResources() {
 	// TODO Auto-generated constructor stub
@@ -40,6 +44,14 @@ GameResources* GameResources::GetInstance() {
 	return instance;
 }
 
+CCLayer* GameResources::getMapLayer()
+{
+	return _mapLayer;
+}
+void GameResources::setMapLayer(CCLayer* layer)
+{
+	_mapLayer = layer;
+}
 int GameResources::getFood(){
 	return _food;
 }

@@ -52,6 +52,7 @@ bool GameMenuLayer::init() {
 	menu_btn->setTouchEnabled(true);
 	menu_btn->addTouchEventListener(this,toucheventselector(GameMenuLayer::showMenu));
 
+
 	//定时器
 	this->schedule(schedule_selector(GameMenuLayer::foodConsume),60);
 
@@ -103,42 +104,21 @@ void GameMenuLayer::addCanteenBuilding(CCObject *pSender, TouchEventType type)
 void GameMenuLayer::showMenu(CCObject *pSender, TouchEventType type)
 {
 	if(type == TOUCH_EVENT_ENDED){
-		//添加菜单层
-		CCMenu* menu = CCMenu::create();
-		menu->setPosition(CCPointZero);
-		CCSprite* menuBg = CCSprite::create("menu.png");
-		CCSize size = CCDirector::sharedDirector()->getWinSize();
-		menuBg->setPosition(ccp(size.width/2,size.height/2));
-		menu->addChild(menuBg,0);
 
-		CCMenuItemImage* teachBuilding = CCMenuItemImage::create(
-			"teachBuilding.png",
-			"teachBuilding.png",
-			this,
-			menu_selector(GameMenuLayer::addTeachBuilding));
-		teachBuilding->setPosition(ccp(180,200));
+		if(pSender==menu_btn) {
+			CCLog("yes!");
+		}
 
-		menu->addChild(teachBuilding,1);
-
-		CCMenuItemImage* cantBuilding = CCMenuItemImage::create(
-				"canteen.png",
-				"canteen.png",
-				this,
-				menu_selector(GameMenuLayer::addCanteenBuilding));
-		cantBuilding->setPosition(ccp(300,200));
-
-		menu->addChild(cantBuilding,1);
-
-		CCMenuItemImage* cancelBtn = CCMenuItemImage::create(
-					"cancel.png",
-					"cancel.png",
-					this,
-					menu_selector(GameMenuLayer::closeMenu));
-		cancelBtn->setPosition(ccp(350,80));
-
-		menu->addChild(cancelBtn,1);
+		menu = TouchGroup::create();
+		menu->addWidget(GUIReader::shareReader()->widgetFromJsonFile("Menu/Menu.json"));
 
 		this->addChild(menu,3,8);
+
+		UIWidget* m_widget = static_cast<UIWidget*>(menu->getWidgetByName("Panel_1"));
+
+		UIButton* m_backBtn = static_cast<UIButton*>(m_widget->getChildByName("backBtn"));
+		m_backBtn->setTouchEnabled(true);
+		m_backBtn->addTouchEventListener(this,toucheventselector(GameMenuLayer::closeMenu));
 	}
 }
 void GameMenuLayer::closeMenu(CCObject *pSender, TouchEventType type)

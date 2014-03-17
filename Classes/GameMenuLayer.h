@@ -30,10 +30,12 @@ public:
 	virtual void addTeachBuilding(CCObject *pSender, TouchEventType type);
 	virtual void addCanteenBuilding(CCObject *pSender, TouchEventType type);
 	virtual void closeMenu(CCObject *pSender, TouchEventType type);
+//	virtual void addBuilding()
 	CREATE_FUNC(GameMenuLayer);
 
 private:
 	TouchGroup* ul;
+	TouchGroup* menu;
 	UIWidget* widget;
 	UIImageView* menuBtn;
 	UILabelAtlas* food_num_label;

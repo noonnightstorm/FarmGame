@@ -8,10 +8,16 @@
 #ifndef GAMERESOURCES_H_
 #define GAMERESOURCES_H_
 
+#include "cocos2d.h"
+
+using namespace cocos2d;
+
 class GameResources {
 public:
 	static GameResources* GetInstance();
 	virtual ~GameResources();
+	CCLayer* getMapLayer();
+	void setMapLayer(CCLayer* mapLayer);
 	int getFood();
 	void setFood(int food);
 	int getMoney();

@@ -38,6 +38,7 @@ bool GameBGLayer::init(){
 
 	resource->setWinHeight(bGSprite->getContentSize().height);
 	resource->setWinWidth(bGSprite->getContentSize().width);
+	resource->setMapLayer(this);
 
 	this->addChild(bGSprite, 0);
 

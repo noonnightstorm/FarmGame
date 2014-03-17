@@ -32,7 +32,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 	    }
 	    else {
 	    	searchPaths.push_back("SD");
-	    	pDirector->setContentScaleFactor(320.0f/designSize.height);
+	    	pDirector->setContentScaleFactor(640.0f/designSize.height);
 	    }
 
 	    CCFileUtils::sharedFileUtils()->setSearchPaths(searchPaths);

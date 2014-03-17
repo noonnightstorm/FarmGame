@@ -32,8 +32,8 @@ bool BuildingsLayer::init(){
 	winSize = CCDirector::sharedDirector()->getVisibleSize();
 	origin = CCDirector::sharedDirector()->getVisibleOrigin();
 	CCSprite* canteen = CCSprite::create("canteen.png");
+	canteen->setAnchorPoint(ccp(0.0, 0.0));
 	canteen->setPosition( ccp(res->getRealWidth(7),res->getRealHeight(7)) );
-	CCLog("%d %d",res->getRealHeight(15),res->getRealWidth(15));
 	//	canteen->setPosition( ccp(origin.x + winSize.width/2, origin.y + winSize.height/2) );
 	this->addChild(canteen);
 
