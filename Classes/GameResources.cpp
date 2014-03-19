@@ -22,8 +22,6 @@ static float _winWidth;
 static int map[22][22];
 static CCLayer* _mapLayer;
 static CCLayer* _buildingLayer;
-static CCPoint _pos;
-static char* _newBuildingName;
 
 GameResources::GameResources() {
 	// TODO Auto-generated constructor stub
@@ -47,22 +45,6 @@ GameResources* GameResources::GetInstance() {
 	return instance;
 }
 
-char* GameResources::getNewBuildingName()
-{
-	return _newBuildingName;
-}
-void GameResources::setNewBuildingName(char* str)
-{
-	_newBuildingName = str;
-}
-CCPoint GameResources::getNewBuildingPosition()
-{
-	return _pos;
-}
-void GameResources::setNewBuildingPosition(CCPoint pos)
-{
-	_pos = pos;
-}
 CCLayer* GameResources::getBuildingLayer()
 {
 	return _buildingLayer;

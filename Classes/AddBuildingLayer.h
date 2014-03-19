@@ -10,8 +10,10 @@
 
 #include "cocos2d.h"
 #include "TouchListener.h"
+#include <string>
 
 using namespace cocos2d;
+using namespace std;
 
 class AddBuildingLayer: public TouchListener {
 public:
@@ -22,6 +24,8 @@ public:
 	virtual bool ccTouchBegan(CCTouch* touch, CCEvent* event);//按下
 	virtual void ccTouchMoved(CCTouch* touch, CCEvent* event);//移动
 	virtual void ccTouchEnded(CCTouch* touch, CCEvent* event);//松开
+	void setBuildingStr(string name);
+	string getBuildingStr();
 	CREATE_FUNC(AddBuildingLayer);
 
 private:
@@ -29,6 +33,7 @@ private:
 	CCPoint origin;
 	CCPoint beginPoint;
 	CCPoint endPoint;
+	string buildName;
 };
 
 #endif /* ADDBUILDINGLAYER_H_ */

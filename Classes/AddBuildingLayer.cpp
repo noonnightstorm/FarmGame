@@ -7,6 +7,7 @@
 #include "AddBuildingLayer.h"
 #include "TouchListener.h"
 #include "GameResources.h"
+#include "Building/BuildObject.h"
 
 using namespace cocos2d;
 
@@ -66,7 +67,16 @@ void AddBuildingLayer::ccTouchEnded(CCTouch* touch, CCEvent* event)
 		point.x = res->getRealWidth((int)(point.x/45));
 	}
 	point.y = res->getRealHeight((int)(point.y/45));
-	CCSprite* p = CCSprite::create();
-	p->setPosition(point);
-	CCNotificationCenter::sharedNotificationCenter()->postNotification("newBuilding",p);
+	BuildObject* obj = new BuildObject();
+	obj->setPosition(point);
+	obj->setBuildingStr(buildName);
+	CCNotificationCenter::sharedNotificationCenter()->postNotification("newBuilding",obj);
+}
+
+void AddBuildingLayer::setBuildingStr(string name){
+	buildName = name;
+}
+
+string  AddBuildingLayer::getBuildingStr(){
+	return buildName;
 }

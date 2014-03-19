@@ -18,10 +18,6 @@ public:
 	virtual ~GameResources();
 	int getPosValue(int x, int y);
 	void setPosValue(int x, int y, int value);
-	char* getNewBuildingName();
-	void setNewBuildingName(char* str);
-	CCPoint getNewBuildingPosition();
-	void setNewBuildingPosition(CCPoint pos);
 	CCLayer* getBuildingLayer();
 	void setBuildingLayer(CCLayer* buildingLayer);
 	CCLayer* getMapLayer();

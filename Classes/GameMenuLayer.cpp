@@ -10,7 +10,12 @@
 #include "GameResources.h"
 #include "TouchListener.h"
 #include "AddBuildingLayer.h"
-#include "Building.h"
+#include "Building/Building.h"
+#include "Building/Canteen.h"
+#include "Building/ClassRoom.h"
+#include "Building/DormitoryStu.h"
+#include "Building/DormitoryWrk.h"
+#include "Building/BuildObject.h"
 #include "cocos-ext.h"
 
 using namespace std;
@@ -62,27 +67,7 @@ bool GameMenuLayer::init() {
 
 	return true;
 }
-/*void GameMenuLayer::registerWithTouchDispatcher()
-{
-	CCDirector::sharedDirector()->getTouchDispatcher()->addTargetedDelegate(this,0,false);
-}
 
-
-bool GameMenuLayer::ccTouchBegan(CCTouch* touch, CCEvent* event)
-{
-	CCLog("begin!!!");
-	return true;
-}*/
-
-/*void GameMenuLayer::ccTouchMoved(CCTouch* touch, CCEvent* event)
-{
-	TouchListener::ccTouchMoved(touch,event);
-}
-
-void GameMenuLayer::ccTouchEnded(CCTouch* touch, CCEvent* event)
-{
-	TouchListener::ccTouchEnded(touch,event);
-}*/
 void GameMenuLayer::foodConsume(float dt)
 {
 	GameResources *resource = GameResources::GetInstance();
@@ -144,27 +129,28 @@ void GameMenuLayer::addBuilding(CCObject *pSender, TouchEventType type)
 	temp = AddBuildingLayer::create();
 	temp->setContentSize(mapSize);
 
+	if(pSender==m_b1) {
+		temp->setBuildingStr("Canteen");
+	}
+	else if(pSender==m_b2) {
+		temp->setBuildingStr("ClassRoom");
+	}
+	else if(pSender==m_b3) {
+		temp->setBuildingStr("DormitoryStu");
+	}
+	else if(pSender==m_b4) {
+		temp->setBuildingStr("DormitoryWrk");
+	}
+
 	this->addChild(temp,5,99);
 
+	//这个空白层是不是可以考虑放到AddBuildingLayer呢？
 	ccColor4B color = ccc4(220, 220, 220, 150);
 	CCLayerColor* color_layer = CCLayerColor::create(color);
 	color_layer->setPosition(ccp(0,0));
 	color_layer->setContentSize(mapSize);
 
 	this->addChild(color_layer,6,100);
-
-	if(pSender==m_b1) {
-		resource->setNewBuildingName("canteen.png");
-	}
-	else if(pSender==m_b2) {
-		resource->setNewBuildingName("teachBuilding.png");
-	}
-	else if(pSender==m_b3) {
-		resource->setNewBuildingName("dormitory_stu.png");
-	}
-	else if(pSender==m_b4) {
-		resource->setNewBuildingName("dormitory_worker.png");
-	}
 
 	CCNotificationCenter::sharedNotificationCenter()->addObserver(this,callfuncO_selector(GameMenuLayer::getNewPosition),"newBuilding",NULL);
 
@@ -174,25 +160,35 @@ void GameMenuLayer::getNewPosition(CCObject* obj)
 {
 	GameResources* res = GameResources::GetInstance();
 
-	CCSprite* p = (CCSprite*)obj;
-	CCPoint point = p->getPosition();
+	BuildObject* bobj = (BuildObject*)obj;
+	CCPoint point = bobj->getPosition();
 	if(res->getPosValue(point.x/45, point.y/45)==0) {
 		res->setPosValue(point.x/45, point.y/45, 1);
-		Building* building = Building::create(res->getNewBuildingName());
+		Building* building;
+		if(bobj->getBuildingStr().compare("Canteen") == 0){
+			building = Canteen::create();
+		}
+		else if(bobj->getBuildingStr().compare("ClassRoom") == 0){
+			building = ClassRoom::create();
+		}
+		else if(bobj->getBuildingStr().compare("DormitoryStu") == 0){
+			building = DormitoryStu::create();
+		}
+		else if(bobj->getBuildingStr().compare("DormitoryWrk") == 0){
+			building = DormitoryWrk::create();
+		}
 		building->setPosition(point);
 		res->getBuildingLayer()->addChild(building,5);
 		CCNotificationCenter::sharedNotificationCenter()->postNotification("newPositionFinish",(CCObject*)1);
 	}
 	else {
-//		CCMessageBox("你选择的地方已经被占用啦！","提示");
 		CCLabelTTF* tips = CCLabelTTF::create("你选择的地方已经被占用，请重新选择", "Marker Felt", 16);
-
 		ccColor3B textcolor = {220, 220, 220};
 		tips->setColor(textcolor);
 
 		tips->setPosition(ccp(origin.x + winSize.width/2,origin.y + winSize.height/2 + 50));
 		temp->addChild(tips,5,101);
-		scheduleOnce(schedule_selector(GameMenuLayer::closeTips), 0.5f);
+		scheduleOnce(schedule_selector(GameMenuLayer::closeTips), 1);
 	}
 }
 void GameMenuLayer::finishBuild(CCObject* obj)
