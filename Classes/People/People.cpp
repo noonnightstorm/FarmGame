@@ -132,7 +132,7 @@ void People::BFS(int FX,int FY,int TX,int TY){
 	{
 		for(int j=0;j<33;++j)
 		{
-			vis[i][j] = resource->getMapXY(i,j);
+			vis[i][j] = resource->getPosValue(i,j);
 		}
 	}
 	for(int i = 0; i < 66; i++){

@@ -11,6 +11,7 @@
 #include "cocos2d.h"
 #include "TouchListener.h"
 #include "cocos-ext.h"
+#include "AddBuildingLayer.h"
 
 using namespace cocos2d;
 using namespace cocos2d::extension;
@@ -27,22 +28,32 @@ public:
 	virtual void ccTouchEnded(CCTouch* touch, CCEvent* event);*/
 	virtual void foodConsume(float dt);
 	virtual void showMenu(CCObject *pSender, TouchEventType type);
-	virtual void addTeachBuilding(CCObject *pSender, TouchEventType type);
-	virtual void addCanteenBuilding(CCObject *pSender, TouchEventType type);
 	virtual void closeMenu(CCObject *pSender, TouchEventType type);
-//	virtual void addBuilding()
+	virtual void addBuilding(CCObject *pSender, TouchEventType type);
+	void getNewPosition(CCObject* obj);
+	void finishBuild(CCObject* obj);
+	void closeTips();
 	CREATE_FUNC(GameMenuLayer);
 
 private:
 	TouchGroup* ul;
 	TouchGroup* menu;
 	UIWidget* widget;
+	UIWidget* m_widget;
 	UIImageView* menuBtn;
 	UILabelAtlas* food_num_label;
 	UILabelAtlas* money_num_label;
 	UILabelAtlas* student_num_label;
 	UILabelAtlas* worker_num_label;
 	UIButton* menu_btn;
+	UIButton* m_backBtn;
+	UIButton* m_b1;
+	UIButton* m_b2;
+	UIButton* m_b3;
+	UIButton* m_b4;
+	AddBuildingLayer* temp;
+	CCSize winSize;
+	CCPoint origin;
 };
 
 #endif /* GAMEMENULAYER_H_ */

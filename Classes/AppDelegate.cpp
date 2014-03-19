@@ -25,14 +25,14 @@ bool AppDelegate::applicationDidFinishLaunching()
 	    std::vector<std::string> searchPaths;
 
 
-	    if(screenSize.height>320) {
+	    if(screenSize.height>=320) {
 	    	searchPaths.push_back("HD");
 	    	searchPaths.push_back("SD");
 	    	pDirector->setContentScaleFactor(640.0f/designSize.height);
 	    }
 	    else {
 	    	searchPaths.push_back("SD");
-	    	pDirector->setContentScaleFactor(640.0f/designSize.height);
+	    	pDirector->setContentScaleFactor(320.0f/designSize.height);
 	    }
 
 	    CCFileUtils::sharedFileUtils()->setSearchPaths(searchPaths);

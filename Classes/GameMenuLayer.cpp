@@ -10,6 +10,7 @@
 #include "GameResources.h"
 #include "TouchListener.h"
 #include "AddBuildingLayer.h"
+#include "Building.h"
 #include "cocos-ext.h"
 
 using namespace std;
@@ -27,12 +28,15 @@ GameMenuLayer::~GameMenuLayer() {
 }
 
 bool GameMenuLayer::init() {
-	if (!CCLayer::init() )
+	if (!CCLayer::init())
 	{
 		return false;
 	}
 	//设置为可点击
 	this->setTouchEnabled(true);
+
+	winSize = CCDirector::sharedDirector()->getVisibleSize();
+	origin = CCDirector::sharedDirector()->getVisibleOrigin();
 
 	//添加资源
 	ul = TouchGroup::create();
@@ -91,37 +95,112 @@ void GameMenuLayer::foodConsume(float dt)
 	food_num_label->setStringValue(temp_food_char);
 	//CCLog("Now_Food: %d",new_food);
 }
-void GameMenuLayer::addTeachBuilding(CCObject *pSender, TouchEventType type)
-{
-	this->removeChildByTag(8);
-	CCLayer* ABLayer = AddBuildingLayer::create();
-	this->addChild(ABLayer,3);
-}
-void GameMenuLayer::addCanteenBuilding(CCObject *pSender, TouchEventType type)
-{
-	CCLog("click!");
-}
 void GameMenuLayer::showMenu(CCObject *pSender, TouchEventType type)
 {
 	if(type == TOUCH_EVENT_ENDED){
 
-		if(pSender==menu_btn) {
-			CCLog("yes!");
-		}
-
 		menu = TouchGroup::create();
 		menu->addWidget(GUIReader::shareReader()->widgetFromJsonFile("Menu/Menu.json"));
 
-		this->addChild(menu,3,8);
+		m_widget = static_cast<UIWidget*>(menu->getWidgetByName("Panel_1"));
 
-		UIWidget* m_widget = static_cast<UIWidget*>(menu->getWidgetByName("Panel_1"));
-
-		UIButton* m_backBtn = static_cast<UIButton*>(m_widget->getChildByName("backBtn"));
+		m_backBtn = static_cast<UIButton*>(m_widget->getChildByName("backBtn"));
 		m_backBtn->setTouchEnabled(true);
 		m_backBtn->addTouchEventListener(this,toucheventselector(GameMenuLayer::closeMenu));
+
+		m_b1 = static_cast<UIButton*>(m_widget->getChildByName("canteen"));
+		m_b1->setTouchEnabled(true);
+		m_b1->addTouchEventListener(this,toucheventselector(GameMenuLayer::addBuilding));
+
+		m_b2 = static_cast<UIButton*>(m_widget->getChildByName("teachBuilding"));
+		m_b2->setTouchEnabled(true);
+		m_b2->addTouchEventListener(this,toucheventselector(GameMenuLayer::addBuilding));
+
+		m_b3 = static_cast<UIButton*>(m_widget->getChildByName("dormitory_stu"));
+		m_b3->setTouchEnabled(true);
+		m_b3->addTouchEventListener(this,toucheventselector(GameMenuLayer::addBuilding));
+
+		m_b4 = static_cast<UIButton*>(m_widget->getChildByName("dormitory_worker"));
+		m_b4->setTouchEnabled(true);
+		m_b4->addTouchEventListener(this,toucheventselector(GameMenuLayer::addBuilding));
+
+		this->addChild(menu,2,8);
 	}
 }
 void GameMenuLayer::closeMenu(CCObject *pSender, TouchEventType type)
 {
 	this->removeChildByTag(8);
+}
+void GameMenuLayer::addBuilding(CCObject *pSender, TouchEventType type)
+{
+
+	GameResources* resource = GameResources::GetInstance();
+	CCSize mapSize;
+	mapSize.height = resource->getWinHeight();
+	mapSize.width = resource->getWinWidth();
+
+	this->removeChildByTag(8);
+
+	temp = AddBuildingLayer::create();
+	temp->setContentSize(mapSize);
+
+	this->addChild(temp,5,99);
+
+	ccColor4B color = ccc4(220, 220, 220, 150);
+	CCLayerColor* color_layer = CCLayerColor::create(color);
+	color_layer->setPosition(ccp(0,0));
+	color_layer->setContentSize(mapSize);
+
+	this->addChild(color_layer,6,100);
+
+	if(pSender==m_b1) {
+		resource->setNewBuildingName("canteen.png");
+	}
+	else if(pSender==m_b2) {
+		resource->setNewBuildingName("teachBuilding.png");
+	}
+	else if(pSender==m_b3) {
+		resource->setNewBuildingName("dormitory_stu.png");
+	}
+	else if(pSender==m_b4) {
+		resource->setNewBuildingName("dormitory_worker.png");
+	}
+
+	CCNotificationCenter::sharedNotificationCenter()->addObserver(this,callfuncO_selector(GameMenuLayer::getNewPosition),"newBuilding",NULL);
+
+	CCNotificationCenter::sharedNotificationCenter()->addObserver(this,callfuncO_selector(GameMenuLayer::finishBuild),"newPositionFinish",NULL);
+}
+void GameMenuLayer::getNewPosition(CCObject* obj)
+{
+	GameResources* res = GameResources::GetInstance();
+
+	CCSprite* p = (CCSprite*)obj;
+	CCPoint point = p->getPosition();
+	if(res->getPosValue(point.x/45, point.y/45)==0) {
+		res->setPosValue(point.x/45, point.y/45, 1);
+		Building* building = Building::create(res->getNewBuildingName());
+		building->setPosition(point);
+		res->getBuildingLayer()->addChild(building,5);
+		CCNotificationCenter::sharedNotificationCenter()->postNotification("newPositionFinish",(CCObject*)1);
+	}
+	else {
+//		CCMessageBox("你选择的地方已经被占用啦！","提示");
+		CCLabelTTF* tips = CCLabelTTF::create("你选择的地方已经被占用，请重新选择", "Marker Felt", 16);
+
+		ccColor3B textcolor = {220, 220, 220};
+		tips->setColor(textcolor);
+
+		tips->setPosition(ccp(origin.x + winSize.width/2,origin.y + winSize.height/2 + 50));
+		temp->addChild(tips,5,101);
+		scheduleOnce(schedule_selector(GameMenuLayer::closeTips), 0.5f);
+	}
+}
+void GameMenuLayer::finishBuild(CCObject* obj)
+{
+	this->removeChildByTag(99);
+	this->removeChildByTag(100);
+}
+void GameMenuLayer::closeTips()
+{
+	temp->removeChildByTag(101);
 }

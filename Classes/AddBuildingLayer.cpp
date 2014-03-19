@@ -1,18 +1,15 @@
 /*
- * AddBuildingLayer.cpp
+ * AddBuildingLayer.h
  *
- *  Created on: Feb 26, 2014
- *      Author: C860
+ *  Created on: Mar 19, 2014
+ *      Author: c860
  */
-
 #include "AddBuildingLayer.h"
-#include "GameResources.h"
 #include "TouchListener.h"
-#include "cocos-ext.h"
+#include "GameResources.h"
 
 using namespace cocos2d;
-using namespace cocos2d::extension;
-using namespace cocos2d::gui;
+
 
 AddBuildingLayer::AddBuildingLayer() {
 	// TODO Auto-generated constructor stub
@@ -23,27 +20,17 @@ AddBuildingLayer::~AddBuildingLayer() {
 	// TODO Auto-generated destructor stub
 }
 
-bool AddBuildingLayer::init() {
+bool AddBuildingLayer::init(){
 	TouchListener::init();
+	GameResources* res = GameResources::GetInstance();
 
-	this->setTouchEnabled(false);
+	CCSize size;
+	size.height = res->getWinHeight();
+	size.width = res->getWinWidth();
+	this->setContentSize(size);
 
-	CCSize winSize = CCDirector::sharedDirector()->getVisibleSize();
-	CCPoint origin = CCDirector::sharedDirector()->getVisibleOrigin();
-
-	CCSprite* techBuilding = CCSprite::create("teachBuilding.png");
-	techBuilding->setPosition( ccp(origin.x + winSize.width/2, origin.y + winSize.height/2) );
-	this->addChild(techBuilding);
-
-	CCMenuItemImage* okBtn = CCMenuItemImage::create("ok.png",
-				"ok.png",
-				this,
-				menu_selector(AddBuildingLayer::test));
-	okBtn->setPosition(ccp(origin.x + okBtn->getContentSize().width/2,origin.y + okBtn->getContentSize().height/2));
-
-	CCMenu* menu = CCMenu::create(okBtn,NULL);
-	menu->setPosition(CCPointZero);
-	this->addChild(menu,1,1);
+	winSize = CCDirector::sharedDirector()->getVisibleSize();
+	origin = CCDirector::sharedDirector()->getVisibleOrigin();
 
 
 	return true;
@@ -68,11 +55,18 @@ void AddBuildingLayer::ccTouchMoved(CCTouch* touch, CCEvent* event)
 void AddBuildingLayer::ccTouchEnded(CCTouch* touch, CCEvent* event)
 {
 	TouchListener::ccTouchEnded(touch,event);
-}
-void AddBuildingLayer::test(CCObject *pSender)
-{
-	CCLog("test");
-	this->removeChildByTag(1);
-	this->setTouchEnabled(true);
-}
 
+	GameResources* res = GameResources::GetInstance();
+
+	CCPoint point = touch->getLocation();
+	if((int)point.x%45>22) {
+		point.x = res->getRealWidth((int)((point.x/45)+1));
+	}
+	else {
+		point.x = res->getRealWidth((int)(point.x/45));
+	}
+	point.y = res->getRealHeight((int)(point.y/45));
+	CCSprite* p = CCSprite::create();
+	p->setPosition(point);
+	CCNotificationCenter::sharedNotificationCenter()->postNotification("newBuilding",p);
+}

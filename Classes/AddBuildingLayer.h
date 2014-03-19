@@ -1,7 +1,7 @@
 /*
  * AddBuildingLayer.h
  *
- *  Created on: Feb 26, 2014
+ *  Created on: Mar 19, 2014
  *      Author: C860
  */
 
@@ -22,8 +22,13 @@ public:
 	virtual bool ccTouchBegan(CCTouch* touch, CCEvent* event);//按下
 	virtual void ccTouchMoved(CCTouch* touch, CCEvent* event);//移动
 	virtual void ccTouchEnded(CCTouch* touch, CCEvent* event);//松开
-	virtual void test(CCObject *pSender);
 	CREATE_FUNC(AddBuildingLayer);
+
+private:
+	CCSize winSize;
+	CCPoint origin;
+	CCPoint beginPoint;
+	CCPoint endPoint;
 };
 
 #endif /* ADDBUILDINGLAYER_H_ */

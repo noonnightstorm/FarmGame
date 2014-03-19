@@ -16,6 +16,14 @@ class GameResources {
 public:
 	static GameResources* GetInstance();
 	virtual ~GameResources();
+	int getPosValue(int x, int y);
+	void setPosValue(int x, int y, int value);
+	char* getNewBuildingName();
+	void setNewBuildingName(char* str);
+	CCPoint getNewBuildingPosition();
+	void setNewBuildingPosition(CCPoint pos);
+	CCLayer* getBuildingLayer();
+	void setBuildingLayer(CCLayer* buildingLayer);
 	CCLayer* getMapLayer();
 	void setMapLayer(CCLayer* mapLayer);
 	int getFood();
@@ -32,7 +40,6 @@ public:
 	void setWinWidth(float winWidth);
 	float getWinWidth();
 	void initMap();
-	int getMapXY(int x, int y);
 	bool isUsed(int x,int y);
 	int getRealHeight(int y);
 	int getRealWidth(int x);

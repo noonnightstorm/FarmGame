@@ -10,7 +10,6 @@
 
 #include "BuildingsLayer.h"
 #include "GameMenuLayer.h"
-#include "AddBuildingLayer.h"
 #include "People/Girl.h"
 #include "People/CookMan.h"
 #include "People/Worker.h"

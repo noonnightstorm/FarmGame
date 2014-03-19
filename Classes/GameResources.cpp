@@ -19,8 +19,11 @@ static int _student;
 static int _worker;
 static float _winHeight;
 static float _winWidth;
-static int map[33][33];
+static int map[22][22];
 static CCLayer* _mapLayer;
+static CCLayer* _buildingLayer;
+static CCPoint _pos;
+static char* _newBuildingName;
 
 GameResources::GameResources() {
 	// TODO Auto-generated constructor stub
@@ -44,6 +47,30 @@ GameResources* GameResources::GetInstance() {
 	return instance;
 }
 
+char* GameResources::getNewBuildingName()
+{
+	return _newBuildingName;
+}
+void GameResources::setNewBuildingName(char* str)
+{
+	_newBuildingName = str;
+}
+CCPoint GameResources::getNewBuildingPosition()
+{
+	return _pos;
+}
+void GameResources::setNewBuildingPosition(CCPoint pos)
+{
+	_pos = pos;
+}
+CCLayer* GameResources::getBuildingLayer()
+{
+	return _buildingLayer;
+}
+void GameResources::setBuildingLayer(CCLayer* buildingLayer)
+{
+	_buildingLayer = buildingLayer;
+}
 CCLayer* GameResources::getMapLayer()
 {
 	return _mapLayer;
@@ -98,18 +125,21 @@ float GameResources::getWinWidth()
 void GameResources::initMap()
 {
 	//初始化地图数组
-	for(int i=0;i<33;++i)
+	for(int i=0;i<22;++i)
 	{
-		for(int j=0;j<33;++j)
+		for(int j=0;j<22;++j)
 		{
 			map[i][j] = 0;
 		}
 	}
 }
-int GameResources::getMapXY(int x, int y){
+int GameResources::getPosValue(int x, int y){
 	return map[x][y];
 }
-
+void GameResources::setPosValue(int x, int y, int value)
+{
+	map[x][y] = value;
+}
 bool GameResources::isUsed(int x,int y)
 {
 	if(map[x][y]==1) {
@@ -121,9 +151,9 @@ bool GameResources::isUsed(int x,int y)
 }
 int GameResources::getRealHeight(int y)
 {
-	return y*30;
+	return y*45;
 }
 int GameResources::getRealWidth(int x)
 {
-	return x*30;
+	return x*45;
 }
