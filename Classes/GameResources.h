@@ -39,6 +39,8 @@ public:
 	bool isUsed(int x,int y);
 	int getRealHeight(int y);
 	int getRealWidth(int x);
+	void addBuildingIndex();
+	int getBuildingIndex();
 private:
 	GameResources();
 };

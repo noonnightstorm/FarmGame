@@ -22,6 +22,7 @@ static float _winWidth;
 static int map[22][22];
 static CCLayer* _mapLayer;
 static CCLayer* _buildingLayer;
+static int _buildingIndex;
 
 GameResources::GameResources() {
 	// TODO Auto-generated constructor stub
@@ -41,6 +42,7 @@ GameResources* GameResources::GetInstance() {
 		_money = 150;
 		_student = 0;
 		_worker = 3;
+		_buildingIndex = 0;
 	}
 	return instance;
 }
@@ -138,4 +140,12 @@ int GameResources::getRealHeight(int y)
 int GameResources::getRealWidth(int x)
 {
 	return x*45;
+}
+
+void GameResources::addBuildingIndex(){
+	_buildingIndex++;
+}
+
+int GameResources::getBuildingIndex(){
+	return _buildingIndex;
 }

@@ -42,10 +42,6 @@ bool GameBGLayer::init(){
 
 	this->addChild(bGSprite, 0);
 
-	/*TouchGroup* ul =TouchGroup::create();
-	ul->addWidget(GUIReader::shareReader()->widgetFromJsonFile("GameResourceUI_1/GameResourceUI_1.ExportJson"));
-	this->addChild(ul,2);*/
-
 	return true;
 }
 void GameBGLayer::registerWithTouchDispatcher()

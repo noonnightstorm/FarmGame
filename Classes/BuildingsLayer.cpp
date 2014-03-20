@@ -33,6 +33,8 @@ bool BuildingsLayer::init(){
 	winSize = CCDirector::sharedDirector()->getVisibleSize();
 	origin = CCDirector::sharedDirector()->getVisibleOrigin();
 
+
+
 	return true;
 }
 void BuildingsLayer::registerWithTouchDispatcher()

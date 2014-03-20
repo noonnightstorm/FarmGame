@@ -31,7 +31,7 @@ bool Building::init() {
 	return true;
 }
 
-void Building::setMapIndex(int x,int y){
+void Building::setMapIndex(float x,float y){
 	buildingMap.x = x;
 	buildingMap.y = y;
 }

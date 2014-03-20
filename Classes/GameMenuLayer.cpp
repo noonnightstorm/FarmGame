@@ -178,7 +178,11 @@ void GameMenuLayer::getNewPosition(CCObject* obj)
 			building = DormitoryWrk::create();
 		}
 		building->setPosition(point);
+		int _buildingIndex = res->getBuildingIndex();
+		building->setBuildingIndex(_buildingIndex);
+		building->setMapIndex(point.x,point.y);
 		res->getBuildingLayer()->addChild(building,5);
+		res->addBuildingIndex();
 		CCNotificationCenter::sharedNotificationCenter()->postNotification("newPositionFinish",(CCObject*)1);
 	}
 	else {
