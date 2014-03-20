@@ -22,6 +22,8 @@ public:
 	void setMapIndex(int x,int y);
 	void setBuildingIndex(int index);
 
+	void doBuilding();
+
 private:
 	CCPoint buildingMap;
 	int buildingIndex;

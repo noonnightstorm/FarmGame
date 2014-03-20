@@ -24,6 +24,9 @@ static CCLayer* _mapLayer;
 static CCLayer* _buildingLayer;
 static int _buildingIndex;
 
+//城堡的位置
+static CCPoint _castleMap;
+
 GameResources::GameResources() {
 	// TODO Auto-generated constructor stub
 
@@ -43,6 +46,8 @@ GameResources* GameResources::GetInstance() {
 		_student = 0;
 		_worker = 3;
 		_buildingIndex = 0;
+		_castleMap.x = 3;
+		_castleMap.y = 4;
 	}
 	return instance;
 }
@@ -148,4 +153,8 @@ void GameResources::addBuildingIndex(){
 
 int GameResources::getBuildingIndex(){
 	return _buildingIndex;
+}
+
+CCPoint GameResources::getCastleMap(){
+	return _castleMap;
 }

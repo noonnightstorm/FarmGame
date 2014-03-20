@@ -8,6 +8,7 @@
 #include "Building.h"
 #include "GameResources.h"
 #include "cocos-ext.h"
+#include "People/Worker.h"
 
 using namespace cocos2d;
 using namespace cocos2d::extension;
@@ -39,3 +40,14 @@ void Building::setMapIndex(int x,int y){
 void Building::setBuildingIndex(int index){
 	buildingIndex = index;
 }
+
+void Building::doBuilding(){
+	GameResources* res = GameResources::GetInstance();
+	CCPoint tmpPoint = res->getCastleMap();
+
+	Worker* worker = Worker::create();
+	worker->setPosition(tmpPoint.x * 45,tmpPoint.y * 45);
+	res->getBuildingLayer()->addChild(worker,4);
+	worker->BFS((int)tmpPoint.x,(int)tmpPoint.y,(int)buildingMap.x,(int)buildingMap.y);
+}
+
