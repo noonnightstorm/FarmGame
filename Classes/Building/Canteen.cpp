@@ -25,3 +25,7 @@ bool Canteen::init() {
 	return true;
 }
 
+void Canteen::onClick()
+{
+	CCLog("canteen!");
+}

@@ -19,6 +19,8 @@ public:
 	virtual ~Canteen();
 	bool init();
 
+	void onClick();
+
 	CREATE_FUNC(Canteen);
 };
 

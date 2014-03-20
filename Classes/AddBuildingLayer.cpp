@@ -66,7 +66,13 @@ void AddBuildingLayer::ccTouchEnded(CCTouch* touch, CCEvent* event)
 	else {
 		point.x = res->getRealWidth((int)(point.x/45));
 	}
-	point.y = res->getRealHeight((int)(point.y/45));
+	if((int)point.y%45>22) {
+		point.y = res->getRealWidth((int)((point.y/45)+1));
+	}
+	else {
+		point.y = res->getRealWidth((int)(point.y/45));
+	}
+//	point.y = res->getRealHeight((int)(point.y/45));
 	BuildObject* obj = new BuildObject();
 	obj->setPosition(point);
 	obj->setBuildingStr(buildName);

@@ -12,15 +12,26 @@
 
 using namespace cocos2d;
 
-class Building : public CCSprite {
+class Building : public CCSprite, public CCTouchDelegate {
 public:
 	Building();
 	virtual ~Building();
 	bool init();
 	static Building* create(const char *filename);
 
+	CCRect getRect();
+
 	void setMapIndex(int x,int y);
 	void setBuildingIndex(int index);
+
+	virtual bool ccTouchBegan(CCTouch* touch, CCEvent* event);//按下
+    virtual void ccTouchMoved(CCTouch* touch, CCEvent* event);//拖动
+    virtual void ccTouchEnded(CCTouch* touch, CCEvent* event);//松开
+
+    virtual void onEnter();
+    virtual void onExit();
+
+    virtual void onClick();
 
 private:
 	CCPoint buildingMap;
