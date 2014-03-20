@@ -180,7 +180,7 @@ void GameMenuLayer::getNewPosition(CCObject* obj)
 		building->setPosition(point);
 		int _buildingIndex = res->getBuildingIndex();
 		building->setBuildingIndex(_buildingIndex);
-		building->setMapIndex(point.x,point.y);
+		building->setMapIndex((int)(point.x/45),(int)(point.y/45));
 		res->getBuildingLayer()->addChild(building,5);
 		res->addBuildingIndex();
 		CCNotificationCenter::sharedNotificationCenter()->postNotification("newPositionFinish",(CCObject*)1);

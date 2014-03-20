@@ -19,7 +19,7 @@ public:
 	bool init();
 	static Building* create(const char *filename);
 
-	void setMapIndex(float x,float y);
+	void setMapIndex(int x,int y);
 	void setBuildingIndex(int index);
 
 private:

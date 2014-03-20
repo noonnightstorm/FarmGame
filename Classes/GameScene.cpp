@@ -106,10 +106,10 @@ bool GameScene::init()
 	this->addChild(worker3,4);
 	worker3->moveTo(3,200,300);*/
 
-	Girl* girl4 = Girl::create();
+	/*Girl* girl4 = Girl::create();
 	girl4->setPosition(200,200);
 	this->addChild(girl4,4);
-	girl4->BFS(0,0,2,2);
+	girl4->BFS(0,0,2,2);*/
 
 	return true;
 }
