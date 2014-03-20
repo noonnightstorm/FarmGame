@@ -52,10 +52,10 @@ protected:
 	const static int GO_RIGHT = 3;
 
 private:
-	const static int RIGHT = 0;
-	const static int LEFT = 2;
-	const static int DOWN = 4;
-	const static int UP = 6;
+	const static int UP = 0;
+	const static int DOWN = 2;
+	const static int RIGHT = 4;
+	const static int LEFT = 6;
 	struct local{
 		int x;
 		int y;

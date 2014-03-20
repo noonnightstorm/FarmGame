@@ -59,10 +59,9 @@ CCArmature* People::getArmature(){
 }*/
 
 void  People::go(float dt){
-	if(frame_count % 20 == 0){
+	if(frame_count % 15 == 0){
 		frame_count = 0;
 		_armature->getAnimation()->stop();
-		CCLog("sec : %d",frame_index);
 		switch(dir_int[frame_index]){
 			case LEFT :
 				_armature->getAnimation()->play("left");
@@ -97,28 +96,28 @@ void  People::go(float dt){
 }
 
 void People::goForward(float dt){
-	_y -= 1.5;
+	_y -= 3;
 	_armature->setPosition(_x,_y);
 }
 
 void People::goBackward(float dt){
-	_y += 1.5;
+	_y += 3;
 	_armature->setPosition(_x,_y);
 }
 
 void People::goLeft(float dt){
-	_x -= 1.5;
+	_x -= 3;
 	_armature->setPosition(_x,_y);
 }
 
 void People::goRight(float dt){
-	_x += 1.5;
+	_x += 3;
 	_armature->setPosition(_x,_y);
 }
 
 void People::BFS(int FX,int FY,int TX,int TY){
 	GameResources *resource = GameResources::GetInstance();
-	//左,右,下,上 的坐标增减
+	//上，下，右，左 的坐标增减
 	int dir[8] = {0,1,0,-1,1,0,-1,0};
 	count = 0;
 	//声明和初始化变量
@@ -184,6 +183,9 @@ void People::move(){
 	this->addChild(_armature);
 	frame_index = 0;
 	frame_count = 0;
+	for(int i = 0;i < count; i++){
+		CCLog("index : %d",dir_int[i]);
+	}
 	//CCLog("total : %d",count*20);
-	this->schedule(schedule_selector(People::go),0.5,count*20,0);
+	this->schedule(schedule_selector(People::go),0.5,count*15,0);
 }

@@ -41,6 +41,7 @@ public:
 	int getRealWidth(int x);
 	void addBuildingIndex();
 	int getBuildingIndex();
+	CCPoint getCastleMap();
 private:
 	GameResources();
 };

@@ -33,6 +33,8 @@ public:
 
     virtual void onClick();
 
+	void doBuilding();
+
 private:
 	CCPoint buildingMap;
 	int buildingIndex;
