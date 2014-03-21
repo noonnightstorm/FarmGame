@@ -17,11 +17,13 @@ DormitoryStu::~DormitoryStu() {
 }
 
 bool DormitoryStu::init() {
-	if (!CCSprite::init() )
+	/*if (!CCSprite::init() )
 	{
 		return false;
 	}
 	this->initWithFile("dormitory_stu.png");
+	return true;*/
+	Building::init();
 	return true;
 }
 

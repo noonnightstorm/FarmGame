@@ -17,11 +17,13 @@ Castle::~Castle() {
 }
 
 bool Castle::init() {
-	if (!CCSprite::init() )
+	/*if (!CCSprite::init() )
 	{
 		return false;
 	}
 	this->initWithFile("canteen.png");
+	return true;*/
+	Building::init();
 	return true;
 }
 

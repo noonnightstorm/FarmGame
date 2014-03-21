@@ -28,7 +28,7 @@ bool Building::init() {
 	{
 		return false;
 	}
-
+	this->initWithFile("building.png");
 	return true;
 }
 
@@ -41,7 +41,48 @@ void Building::setBuildingIndex(int index){
 	buildingIndex = index;
 }
 
-void Building::doBuilding(){
+void Building::building(int MapX,int MapY,string type){
+	GameResources* res = GameResources::GetInstance();
+	CCPoint* point = new CCPoint();
+	point->setPoint(MapX*45,MapY*45);
+	this->setPosition(*point);
+	buildingMap.x = MapX;
+	buildingMap.y = MapY;
+	buildingType = type;
+	buildingIndex = res->getBuildingIndex();
+	res->addBuildingIndex();
+
+	if(type.compare("Castle") == 0){
+		this->initWithFile("canteen.png");
+	}
+	else if(type.compare("Canteen") == 0){
+		this->initWithFile("canteen.png");
+	}
+	else if(type.compare("ClassRoom") == 0){
+		this->initWithFile("teachBuilding.png");
+	}
+	else if(type.compare("DormitoryStu") == 0){
+		this->initWithFile("dormitory_stu.png");
+	}
+	else if(type.compare("DormitoryWrk") == 0){
+		this->initWithFile("dormitory_worker.png");
+	}
+}
+
+void Building::doBuilding(int MapX,int MapY,string type){
+	GameResources* res = GameResources::GetInstance();
+	CCPoint* point = new CCPoint();
+	point->setPoint(MapX*45,MapY*45);
+	this->setPosition(*point);
+	buildingMap.x = MapX;
+	buildingMap.y = MapY;
+	buildingType = type;
+	buildingIndex = res->getBuildingIndex();
+	res->addBuildingIndex();
+	moveToBuilding();
+}
+
+void Building::moveToBuilding(){
 	GameResources* res = GameResources::GetInstance();
 	CCPoint tmpPoint = res->getCastleMap();
 
@@ -50,4 +91,22 @@ void Building::doBuilding(){
 	res->getBuildingLayer()->addChild(worker,4);
 	worker->BFS((int)tmpPoint.x,(int)tmpPoint.y,(int)buildingMap.x,(int)buildingMap.y);
 }
+
+void Building::beginToBuilding(){
+
+}
+
+void Building::finishBuilding(){
+
+}
+
+/*void Building::doBuilding(){
+	GameResources* res = GameResources::GetInstance();
+	CCPoint tmpPoint = res->getCastleMap();
+
+	Worker* worker = Worker::create();
+	worker->setPosition(tmpPoint.x * 45,tmpPoint.y * 45);
+	res->getBuildingLayer()->addChild(worker,4);
+	worker->BFS((int)tmpPoint.x,(int)tmpPoint.y,(int)buildingMap.x,(int)buildingMap.y);
+}*/
 

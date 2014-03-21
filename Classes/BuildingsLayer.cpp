@@ -36,7 +36,15 @@ bool BuildingsLayer::init(){
 	winSize = CCDirector::sharedDirector()->getVisibleSize();
 	origin = CCDirector::sharedDirector()->getVisibleOrigin();
 
-	CCPoint* point1 = new CCPoint();
+	Castle* castle = Castle::create();
+	castle->building(3,4,"Castle");
+	this->addChild(castle,5);
+
+	Canteen* canteen = Canteen::create();
+	canteen->doBuilding(8,1,"Canteen");
+	this->addChild(canteen,5);
+
+	/*CCPoint* point1 = new CCPoint();
 	point1->setPoint(135,180);
 	Castle* castle = Castle::create();
 	castle->setPosition(*point1);
@@ -53,7 +61,7 @@ bool BuildingsLayer::init(){
 	canteen->setMapIndex((int)(360/45),(int)(45/45));
 	this->addChild(canteen,5);
 	res->addBuildingIndex();
-	canteen->doBuilding();
+	canteen->doBuilding();*/
 
 	return true;
 }

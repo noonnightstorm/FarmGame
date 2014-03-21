@@ -17,11 +17,7 @@ Canteen::~Canteen() {
 }
 
 bool Canteen::init() {
-	if (!CCSprite::init() )
-	{
-		return false;
-	}
-	this->initWithFile("canteen.png");
+	Building::init();
 	return true;
 }
 
