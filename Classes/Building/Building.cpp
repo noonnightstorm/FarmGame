@@ -9,6 +9,7 @@
 #include "GameResources.h"
 #include "cocos-ext.h"
 #include "People/Worker.h"
+#include "People/PeopleMoveObject.h"
 
 using namespace cocos2d;
 using namespace cocos2d::extension;
@@ -70,6 +71,7 @@ void Building::building(int MapX,int MapY,string type){
 }
 
 void Building::doBuilding(int MapX,int MapY,string type){
+	//添加地基
 	GameResources* res = GameResources::GetInstance();
 	CCPoint* point = new CCPoint();
 	point->setPoint(MapX*45,MapY*45);
@@ -79,7 +81,10 @@ void Building::doBuilding(int MapX,int MapY,string type){
 	buildingType = type;
 	buildingIndex = res->getBuildingIndex();
 	res->addBuildingIndex();
+
+	//人物移动
 	moveToBuilding();
+	CCNotificationCenter::sharedNotificationCenter()->addObserver(this,callfuncO_selector(Building::beginToBuilding),"beginToBuilding",NULL);
 }
 
 void Building::moveToBuilding(){
@@ -89,11 +94,14 @@ void Building::moveToBuilding(){
 	Worker* worker = Worker::create();
 	worker->setPosition(tmpPoint.x * 45,tmpPoint.y * 45);
 	res->getBuildingLayer()->addChild(worker,4);
-	worker->BFS((int)tmpPoint.x,(int)tmpPoint.y,(int)buildingMap.x,(int)buildingMap.y);
+	worker->BFS((int)tmpPoint.x,(int)tmpPoint.y,(int)buildingMap.x,(int)buildingMap.y,buildingIndex,"beginToBuilding");
 }
 
-void Building::beginToBuilding(){
-
+void Building::beginToBuilding(CCObject* obj){
+	PeopleMoveObject* pobj = (PeopleMoveObject*)obj;
+	if(pobj->getBuildingIndex() == buildingIndex){
+		CCLog("begin to build and index is %d",buildingIndex);
+	}
 }
 
 void Building::finishBuilding(){

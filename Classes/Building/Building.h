@@ -33,7 +33,7 @@ private:
 	string buildingType;
 	//static CCArmature* _armature;
 	void moveToBuilding();
-	void beginToBuilding();
+	void beginToBuilding(CCObject* obj);
 	void finishBuilding();
 };
 
