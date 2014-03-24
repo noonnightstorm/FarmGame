@@ -97,19 +97,19 @@ void GameMenuLayer::showMenu(CCObject *pSender, TouchEventType type)
 
 		m_b1 = static_cast<UIButton*>(m_widget->getChildByName("canteen"));
 		m_b1->setTouchEnabled(true);
-		m_b1->addTouchEventListener(this,toucheventselector(GameMenuLayer::addBuilding));
+		m_b1->addTouchEventListener(this,toucheventselector(GameMenuLayer::showConfirmMenu));
 
 		m_b2 = static_cast<UIButton*>(m_widget->getChildByName("teachBuilding"));
 		m_b2->setTouchEnabled(true);
-		m_b2->addTouchEventListener(this,toucheventselector(GameMenuLayer::addBuilding));
+		m_b2->addTouchEventListener(this,toucheventselector(GameMenuLayer::showConfirmMenu));
 
 		m_b3 = static_cast<UIButton*>(m_widget->getChildByName("dormitory_stu"));
 		m_b3->setTouchEnabled(true);
-		m_b3->addTouchEventListener(this,toucheventselector(GameMenuLayer::addBuilding));
+		m_b3->addTouchEventListener(this,toucheventselector(GameMenuLayer::showConfirmMenu));
 
 		m_b4 = static_cast<UIButton*>(m_widget->getChildByName("dormitory_worker"));
 		m_b4->setTouchEnabled(true);
-		m_b4->addTouchEventListener(this,toucheventselector(GameMenuLayer::addBuilding));
+		m_b4->addTouchEventListener(this,toucheventselector(GameMenuLayer::showConfirmMenu));
 
 		this->addChild(menu,2,8);
 	}
@@ -118,7 +118,7 @@ void GameMenuLayer::closeMenu(CCObject *pSender, TouchEventType type)
 {
 	this->removeChildByTag(8);
 }
-void GameMenuLayer::addBuilding(CCObject *pSender, TouchEventType type)
+void GameMenuLayer::addBuilding()
 {
 
 	GameResources* resource = GameResources::GetInstance();
@@ -126,39 +126,69 @@ void GameMenuLayer::addBuilding(CCObject *pSender, TouchEventType type)
 	mapSize.height = resource->getWinHeight();
 	mapSize.width = resource->getWinWidth();
 
-	this->removeChildByTag(8);
-
 	temp = AddBuildingLayer::create();
 	temp->setContentSize(mapSize);
 
-	if(pSender==m_b1) {
-		temp->setBuildingStr("Canteen");
-	}
-	else if(pSender==m_b2) {
-		temp->setBuildingStr("ClassRoom");
-	}
-	else if(pSender==m_b3) {
-		temp->setBuildingStr("DormitoryStu");
-	}
-	else if(pSender==m_b4) {
-		temp->setBuildingStr("DormitoryWrk");
-	}
+	temp->setBuildingStr(bType);
 
 	this->addChild(temp,5,99);
-
-	//这个空白层是不是可以考虑放到AddBuildingLayer呢？
-	ccColor4B color = ccc4(220, 220, 220, 150);
-	CCLayerColor* color_layer = CCLayerColor::create(color);
-	color_layer->setPosition(ccp(0,0));
-	color_layer->setContentSize(mapSize);
-
-	this->addChild(color_layer,6,100);
 
 	CCNotificationCenter::sharedNotificationCenter()->addObserver(this,callfuncO_selector(GameMenuLayer::getNewPosition),"newBuilding",NULL);
 
 	CCNotificationCenter::sharedNotificationCenter()->addObserver(this,callfuncO_selector(GameMenuLayer::finishBuild),"newPositionFinish",NULL);
 }
 
+
+void GameMenuLayer::showConfirmMenu(CCObject *pSender, TouchEventType type)
+{
+	this->removeChildByTag(8);
+
+	TouchGroup* infoMenu = TouchGroup::create();
+	infoMenu->addWidget(GUIReader::shareReader()->widgetFromJsonFile("InfoMenu/InfoMenu.json"));
+
+	this->addChild(infoMenu,5,100);
+
+	UIWidget* im_widget = static_cast<UIWidget*>(infoMenu->getWidgetByName("Panel_1"));
+
+	UIImageView* im_buildingView = static_cast<UIImageView*>(im_widget->getChildByName("buildingView"));
+
+	if(pSender==m_b1) {
+		im_buildingView->loadTexture("canteen.png");
+		bType = "Canteen";
+	}
+	else if(pSender==m_b2) {
+		im_buildingView->loadTexture("teachBuilding.png");
+		bType = "ClassRoom";
+	}
+	else if(pSender==m_b3) {
+		im_buildingView->loadTexture("dormitory_stu.png");
+		bType = "DormitoryStu";
+	}
+	else if(pSender==m_b4) {
+		im_buildingView->loadTexture("dormitory_worker.png");
+		bType = "DormitoryWrk";
+	}
+
+	UIButton* im_crossBtn = static_cast<UIButton*>(infoMenu->getWidgetByName("crossBtn"));
+	im_crossBtn->setTouchEnabled(true);
+	im_crossBtn->addTouchEventListener(this,toucheventselector(GameMenuLayer::cancelAddBuilding));
+
+	UIButton* im_tickBtn = static_cast<UIButton*>(infoMenu->getWidgetByName("tickBtn"));
+	im_tickBtn->setTouchEnabled(true);
+	im_tickBtn->addTouchEventListener(this,toucheventselector(GameMenuLayer::confirmAddBuilding));
+}
+
+void GameMenuLayer::confirmAddBuilding()
+{
+	this->removeChildByTag(100);
+
+	addBuilding();
+}
+
+void GameMenuLayer::cancelAddBuilding()
+{
+	this->removeChildByTag(100);
+}
 
 void GameMenuLayer::getNewPosition(CCObject* obj)
 {
@@ -202,7 +232,7 @@ void GameMenuLayer::getNewPosition(CCObject* obj)
 void GameMenuLayer::finishBuild(CCObject* obj)
 {
 	this->removeChildByTag(99);
-	this->removeChildByTag(100);
+//	this->removeChildByTag(100);
 }
 void GameMenuLayer::closeTips()
 {

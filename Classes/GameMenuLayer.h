@@ -12,6 +12,7 @@
 #include "TouchListener.h"
 #include "cocos-ext.h"
 #include "AddBuildingLayer.h"
+#include <string>
 
 using namespace cocos2d;
 using namespace cocos2d::extension;
@@ -29,7 +30,10 @@ public:
 	virtual void foodConsume(float dt);
 	virtual void showMenu(CCObject *pSender, TouchEventType type);
 	virtual void closeMenu(CCObject *pSender, TouchEventType type);
-	virtual void addBuilding(CCObject *pSender, TouchEventType type);
+	virtual void addBuilding();
+	virtual void showConfirmMenu(CCObject *pSender, TouchEventType type);
+	void confirmAddBuilding();
+	void cancelAddBuilding();
 	void getNewPosition(CCObject* obj);
 	void finishBuild(CCObject* obj);
 	void closeTips();
@@ -54,6 +58,7 @@ private:
 	AddBuildingLayer* temp;
 	CCSize winSize;
 	CCPoint origin;
+	string bType;
 };
 
 #endif /* GAMEMENULAYER_H_ */
