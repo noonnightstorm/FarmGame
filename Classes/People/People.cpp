@@ -10,6 +10,7 @@
 #include<iostream>
 #include<stdio.h>
 #include<string.h>
+#include "People/PeopleMoveObject.h"
 
 using namespace std;
 
@@ -77,6 +78,11 @@ void  People::go(float dt){
 				break;
 		}
 		frame_index++;
+		//结束条件
+		if(frame_index == count + 1){
+			moveEnded();
+			return ;
+		}
 	}
 	switch(dir_int[frame_index-1]){
 		case LEFT :
@@ -115,7 +121,9 @@ void People::goRight(float dt){
 	_armature->setPosition(_x,_y);
 }
 
-void People::BFS(int FX,int FY,int TX,int TY){
+void People::BFS(int FX,int FY,int TX,int TY,int index,string info){
+	workInfo = info;
+	buildingIndex = index;
 	GameResources *resource = GameResources::GetInstance();
 	//上，下，右，左 的坐标增减
 	int dir[8] = {0,1,0,-1,1,0,-1,0};
@@ -183,9 +191,27 @@ void People::move(){
 	this->addChild(_armature);
 	frame_index = 0;
 	frame_count = 0;
-	for(int i = 0;i < count; i++){
+	/*for(int i = 0;i < count; i++){
 		CCLog("index : %d",dir_int[i]);
+	}*/
+	this->schedule(schedule_selector(People::go),0.5);
+}
+
+void People::moveEnded(){
+	this->unscheduleAllSelectors();
+
+	//根据人物的info来进行消息的广播
+	if(workInfo.compare("beginToBuilding") == 0){
+		//开始工作
+		PeopleMoveObject* obj = new PeopleMoveObject();
+		obj->setInfo(workInfo,buildingIndex);
+		CCNotificationCenter::sharedNotificationCenter()->postNotification("beginToBuilding",obj);
+		//人物消失
+		GameResources* res = GameResources::GetInstance();
+		res->getBuildingLayer()->removeChild(this,true);
 	}
-	//CCLog("total : %d",count*20);
-	this->schedule(schedule_selector(People::go),0.5,count*15,0);
+	else if(workInfo.compare("moveBack") == 0){
+		GameResources* res = GameResources::GetInstance();
+		res->getBuildingLayer()->removeChild(this,true);
+	}
 }

@@ -17,10 +17,12 @@ ClassRoom::~ClassRoom() {
 }
 
 bool ClassRoom::init() {
-	if (!CCSprite::init() )
+	/*if (!CCSprite::init() )
 	{
 		return false;
 	}
 	this->initWithFile("teachBuilding.png");
+	return true;*/
+	Building::init();
 	return true;
 }

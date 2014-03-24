@@ -17,11 +17,13 @@ DormitoryWrk::~DormitoryWrk() {
 }
 
 bool DormitoryWrk::init() {
-	if (!CCSprite::init() )
+	/*if (!CCSprite::init() )
 	{
 		return false;
 	}
 	this->initWithFile("dormitory_worker.png");
+	return true;*/
+	Building::init();
 	return true;
 }
 

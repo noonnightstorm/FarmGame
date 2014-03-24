@@ -10,7 +10,11 @@
 
 #include "cocos2d.h"
 #include "cocos-ext.h"
+#include<iostream>
+#include<stdio.h>
+#include<string.h>
 
+using namespace std;
 using namespace cocos2d;
 using namespace cocos2d::extension;
 using namespace cocos2d::gui;
@@ -31,9 +35,10 @@ public:
 	virtual void go(float dt);
 
 	//BFS
-	void BFS(int FX,int FY,int TX,int TY);
+	void BFS(int FX,int FY,int TX,int TY,int index,string info);
 	void findPath(int head);
 	void move();
+	void moveEnded();
 	//CREATE_FUNC(People);
 
 protected:
@@ -63,6 +68,8 @@ private:
 	}list[1100];
 	int vis[33][33],pre[1100],dir_int[67],count;
 	int frame_count,frame_index;
+	string workInfo;
+	int buildingIndex;
 };
 
 #endif /* PEOPLE_H_ */

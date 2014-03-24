@@ -7,6 +7,7 @@
 
 #include "PeopleMoveObject.h"
 
+
 PeopleMoveObject::PeopleMoveObject() {
 	// TODO Auto-generated constructor stub
 
@@ -16,12 +17,16 @@ PeopleMoveObject::~PeopleMoveObject() {
 	// TODO Auto-generated destructor stub
 }
 
-void PeopleMoveObject::setPath(int fIndex,int fx,int fy,int tIndex,int tx,int ty,int peopleType){
-	_fIndex = fIndex;
-	_fy = fy;
-	_fx = fx;
-	_tIndex = tIndex;
-	_ty = ty;
-	_tx = tx;
-	_peopleType = peopleType;
+
+void PeopleMoveObject::setInfo(string info,int buildingIndex){
+	_info = info;
+	_buildingIndex = buildingIndex;
+}
+
+string PeopleMoveObject::getWorkInfo(){
+	return _info;
+}
+
+int PeopleMoveObject::getBuildingIndex(){
+	return _buildingIndex;
 }
