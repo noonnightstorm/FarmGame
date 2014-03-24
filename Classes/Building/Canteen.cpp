@@ -32,4 +32,5 @@ bool Canteen::init() {
 
 void Canteen::onClick()
 {
+
 }

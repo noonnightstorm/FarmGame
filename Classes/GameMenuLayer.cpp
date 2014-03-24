@@ -84,6 +84,8 @@ void GameMenuLayer::showMenu(CCObject *pSender, TouchEventType type)
 {
 	if(type == TOUCH_EVENT_ENDED){
 
+		this->removeChildByTag(8);
+
 		menu = TouchGroup::create();
 		menu->addWidget(GUIReader::shareReader()->widgetFromJsonFile("Menu/Menu.json"));
 
@@ -156,6 +158,8 @@ void GameMenuLayer::addBuilding(CCObject *pSender, TouchEventType type)
 
 	CCNotificationCenter::sharedNotificationCenter()->addObserver(this,callfuncO_selector(GameMenuLayer::finishBuild),"newPositionFinish",NULL);
 }
+
+
 void GameMenuLayer::getNewPosition(CCObject* obj)
 {
 	GameResources* res = GameResources::GetInstance();
