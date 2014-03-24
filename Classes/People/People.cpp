@@ -202,8 +202,16 @@ void People::moveEnded(){
 
 	//根据人物的info来进行消息的广播
 	if(workInfo.compare("beginToBuilding") == 0){
+		//开始工作
 		PeopleMoveObject* obj = new PeopleMoveObject();
 		obj->setInfo(workInfo,buildingIndex);
 		CCNotificationCenter::sharedNotificationCenter()->postNotification("beginToBuilding",obj);
+		//人物消失
+		GameResources* res = GameResources::GetInstance();
+		res->getBuildingLayer()->removeChild(this,true);
+	}
+	else if(workInfo.compare("moveBack") == 0){
+		GameResources* res = GameResources::GetInstance();
+		res->getBuildingLayer()->removeChild(this,true);
 	}
 }

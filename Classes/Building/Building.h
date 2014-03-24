@@ -34,7 +34,6 @@ public:
 protected:
 	CCPoint buildingMap;
 	int buildingIndex;
-	//这里需要拓展那里来删除这个字段
 	string buildingType;
 	CCArmature* _armature;
 
@@ -42,6 +41,7 @@ private:
 	void moveToBuilding();
 	void beginToBuilding(CCObject* obj);
 	void finishBuilding();
+	void moveBack();
 };
 
 #endif /* BUILDING_H_ */

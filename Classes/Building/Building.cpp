@@ -96,31 +96,51 @@ void Building::moveToBuilding(){
 	res->getBuildingLayer()->addChild(worker,4);
 	worker->BFS((int)tmpPoint.x,(int)tmpPoint.y,(int)buildingMap.x,(int)buildingMap.y,buildingIndex,"beginToBuilding");
 }
+void Building::moveBack(){
+	GameResources* res = GameResources::GetInstance();
+	CCPoint tmpPoint = res->getCastleMap();
+
+	Worker* worker = Worker::create();
+	worker->setPosition(buildingMap.x * 45,buildingMap.y * 45);
+	res->getBuildingLayer()->addChild(worker,4);
+	worker->BFS((int)buildingMap.x,(int)buildingMap.y,(int)tmpPoint.x,(int)tmpPoint.y,0,"moveBack");
+}
 
 void Building::beginToBuilding(CCObject* obj){
-	GameResources* res = GameResources::GetInstance();
 	PeopleMoveObject* pobj = (PeopleMoveObject*)obj;
 	if(pobj->getBuildingIndex() == buildingIndex){
+		//开始播放修建动画
+		GameResources* res = GameResources::GetInstance();
 		this->initWithFile("blank.png");
 		CCArmatureDataManager::sharedArmatureDataManager()->addArmatureFileInfo("Building/Building0.png","Building/Building0.plist","Building/Building.ExportJson");
 		_armature = CCArmature::create("Building");
 		_armature->setPosition(buildingMap.x*45,buildingMap.y*45);
 		_armature->getAnimation()->playByIndex(0);
 		res->getBuildingLayer()->addChild(_armature,6);
+		//定时60秒就会完成
+		this->scheduleOnce(schedule_selector(Building::finishBuilding),5);
 	}
 }
 
 void Building::finishBuilding(){
-
+	GameResources* res = GameResources::GetInstance();
+	res->getBuildingLayer()->removeChild(_armature);
+	if(buildingType.compare("Castle") == 0){
+		this->initWithFile("castle.png");
+	}
+	else if(buildingType.compare("Canteen") == 0){
+		this->initWithFile("canteen.png");
+	}
+	else if(buildingType.compare("ClassRoom") == 0){
+		this->initWithFile("teachBuilding.png");
+	}
+	else if(buildingType.compare("DormitoryStu") == 0){
+		this->initWithFile("dormitory_stu.png");
+	}
+	else if(buildingType.compare("DormitoryWrk") == 0){
+		this->initWithFile("dormitory_worker.png");
+	}
+	moveBack();
 }
 
-/*void Building::doBuilding(){
-	GameResources* res = GameResources::GetInstance();
-	CCPoint tmpPoint = res->getCastleMap();
-
-	Worker* worker = Worker::create();
-	worker->setPosition(tmpPoint.x * 45,tmpPoint.y * 45);
-	res->getBuildingLayer()->addChild(worker,4);
-	worker->BFS((int)tmpPoint.x,(int)tmpPoint.y,(int)buildingMap.x,(int)buildingMap.y);
-}*/
 

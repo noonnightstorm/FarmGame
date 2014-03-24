@@ -44,25 +44,6 @@ bool BuildingsLayer::init(){
 	canteen->doBuilding(8,1,"Canteen");
 	this->addChild(canteen,5);
 
-	/*CCPoint* point1 = new CCPoint();
-	point1->setPoint(135,180);
-	Castle* castle = Castle::create();
-	castle->setPosition(*point1);
-	castle->setBuildingIndex(0);
-	castle->setMapIndex((int)(135/45),(int)(180/45));
-	this->addChild(castle,5);
-	res->addBuildingIndex();
-
-	CCPoint* point2 = new CCPoint();
-	point2->setPoint(360,45);
-	Canteen* canteen = Canteen::create();
-	canteen->setPosition(*point2);
-	canteen->setBuildingIndex(1);
-	canteen->setMapIndex((int)(360/45),(int)(45/45));
-	this->addChild(canteen,5);
-	res->addBuildingIndex();
-	canteen->doBuilding();*/
-
 	return true;
 }
 void BuildingsLayer::registerWithTouchDispatcher()
