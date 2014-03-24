@@ -9,11 +9,14 @@
 #define BUILDING_H_
 
 #include "cocos2d.h"
+#include "cocos-ext.h"
 #include <iostream>
 #include <string>
 
 using namespace std;
 using namespace cocos2d;
+using namespace cocos2d::extension;
+using namespace cocos2d::gui;
 
 class Building : public CCSprite {
 public:
@@ -27,11 +30,15 @@ public:
 	void building(int MapX,int MapY,string type);
 	void doBuilding(int MapX,int MapY,string type);
 	CREATE_FUNC(Building);
-private:
+
+protected:
 	CCPoint buildingMap;
 	int buildingIndex;
+	//这里需要拓展那里来删除这个字段
 	string buildingType;
-	//static CCArmature* _armature;
+	CCArmature* _armature;
+
+private:
 	void moveToBuilding();
 	void beginToBuilding(CCObject* obj);
 	void finishBuilding();

@@ -54,7 +54,7 @@ void Building::building(int MapX,int MapY,string type){
 	res->addBuildingIndex();
 
 	if(type.compare("Castle") == 0){
-		this->initWithFile("canteen.png");
+		this->initWithFile("castle.png");
 	}
 	else if(type.compare("Canteen") == 0){
 		this->initWithFile("canteen.png");
@@ -98,9 +98,15 @@ void Building::moveToBuilding(){
 }
 
 void Building::beginToBuilding(CCObject* obj){
+	GameResources* res = GameResources::GetInstance();
 	PeopleMoveObject* pobj = (PeopleMoveObject*)obj;
 	if(pobj->getBuildingIndex() == buildingIndex){
-		CCLog("begin to build and index is %d",buildingIndex);
+		this->initWithFile("blank.png");
+		CCArmatureDataManager::sharedArmatureDataManager()->addArmatureFileInfo("Building/Building0.png","Building/Building0.plist","Building/Building.ExportJson");
+		_armature = CCArmature::create("Building");
+		_armature->setPosition(buildingMap.x*45,buildingMap.y*45);
+		_armature->getAnimation()->playByIndex(0);
+		res->getBuildingLayer()->addChild(_armature,6);
 	}
 }
 
