@@ -7,7 +7,7 @@
 
 #include "GameScene.h"
 #include "GameBGLayer.h"
-
+#include "GameResources.h"
 #include "BuildingsLayer.h"
 #include "GameMenuLayer.h"
 #include "People/Girl.h"
@@ -30,6 +30,8 @@ bool GameScene::init()
 	//run the super init()
 	CCScene::init();
 
+	GameResources* res = GameResources::GetInstance();
+
 	//添加地图层（背景层）
 	CCLayer* bGLayer = GameBGLayer::create();
 	this->addChild(bGLayer,0);
@@ -41,7 +43,7 @@ bool GameScene::init()
 	//添加菜单层
 	CCLayer* MenuLayer = GameMenuLayer::create();
 	this->addChild(MenuLayer,2);
-
+	res->setMenuLayer(MenuLayer);
 
 
 	/*CookMan* cookMan = CookMan::create();

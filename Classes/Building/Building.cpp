@@ -42,6 +42,7 @@ bool Building::init() {
 		return false;
 	}
 	this->initWithFile("building.png");
+	GameResources* res = GameResources::GetInstance();
 	return true;
 }
 
@@ -54,55 +55,52 @@ void Building::setBuildingIndex(int index){
 	buildingIndex = index;
 }
 
-// void Building::onEnter()
-// {
-// 	CCDirector* pDirector = CCDirector::sharedDirector();
-// 	//添加一个触摸委托给dispatcher的列表,委托对象this,
-// 	pDirector->getTouchDispatcher()->addTargetedDelegate(this, 0, false);
-// 	CCSprite::onEnter();
-// }
+void Building::onEnter()
+{
+	CCDirector* pDirector = CCDirector::sharedDirector();
+		//添加一个触摸委托给dispatcher的列表,委托对象this,
+		pDirector->getTouchDispatcher()->addTargetedDelegate(this, 0, false);
+	CCSprite::onEnter();
+}
 
-// void Building::onExit()
-// {
-// 	//移除监听
-// 	CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
-// 	CCSprite::onExit();
-// }
+void Building::onExit()
+{
+	//移除监听
+	CCDirector::sharedDirector()->getTouchDispatcher()->removeDelegate(this);
+	CCSprite::onExit();
+}
 
-// CCRect Building::getRect()
-// {
-// 	return CCRectMake(getPositionX() - getContentSize().width * getAnchorPoint().x,
-// 						  getPositionY() - getContentSize().height * getAnchorPoint().y,
-// 						  getContentSize().width, getContentSize().height);
-// }
+CCRect Building::getRect()
+{
+	return CCRectMake(getPositionX() - getContentSize().width * getAnchorPoint().x,
+						  getPositionY() - getContentSize().height * getAnchorPoint().y,
+						  getContentSize().width, getContentSize().height);
+}
 
-// bool Building::ccTouchBegan(CCTouch* touch, CCEvent* event)
-// {
-
-//     CCPoint touchLocation = touch->getLocation(); // 返回GL坐标
-//     CCPoint localPos = convertToNodeSpace(touchLocation);
-//     CCRect rc = getRect();
-//     rc.origin = CCPointZero;
-//     bool isTouched = rc.containsPoint(localPos);
-//     if(isTouched)
-//     {
-//         onClick();
-//         return true;
-//     }
-// }
-// void Building::ccTouchMoved(CCTouch* touch, CCEvent* event)
-// {
-// }
-// void Building::ccTouchEnded(CCTouch* pTouch, CCEvent* event)
-// {
-// }
-// void Building::onClick()
-// {
-
-// }
+bool Building::ccTouchBegan(CCTouch* touch, CCEvent* event)
+{
+	CCPoint touchLocation = touch->getLocation(); // 返回GL坐标
+	CCPoint localPos = convertToNodeSpace(touchLocation);
+	CCRect rc = getRect();
+	rc.origin = CCPointZero;
+	bool isTouched = rc.containsPoint(localPos);
+	if(isTouched)
+	{
+		onClick();
+		return true;
+	}
+}
+void Building::ccTouchMoved(CCTouch* touch, CCEvent* event)
+{
+}
+void Building::ccTouchEnded(CCTouch* pTouch, CCEvent* event)
+{
+}
+void Building::onClick()
+{
+}
 
 void Building::building(int MapX,int MapY,string type){
-	GameResources* res = GameResources::GetInstance();
 	CCPoint* point = new CCPoint();
 	point->setPoint(MapX*45,MapY*45);
 	this->setPosition(*point);
@@ -131,7 +129,6 @@ void Building::building(int MapX,int MapY,string type){
 
 void Building::doBuilding(int MapX,int MapY,string type){
 	//添加地基
-	GameResources* res = GameResources::GetInstance();
 	CCPoint* point = new CCPoint();
 	point->setPoint(MapX*45,MapY*45);
 	this->setPosition(*point);
@@ -147,7 +144,6 @@ void Building::doBuilding(int MapX,int MapY,string type){
 }
 
 void Building::moveToBuilding(){
-	GameResources* res = GameResources::GetInstance();
 	CCPoint tmpPoint = res->getCastleMap();
 
 	Worker* worker = Worker::create();
@@ -156,7 +152,6 @@ void Building::moveToBuilding(){
 	worker->BFS((int)tmpPoint.x,(int)tmpPoint.y,(int)buildingMap.x,(int)buildingMap.y,buildingIndex,"beginToBuilding");
 }
 void Building::moveBack(){
-	GameResources* res = GameResources::GetInstance();
 	CCPoint tmpPoint = res->getCastleMap();
 
 	Worker* worker = Worker::create();
@@ -182,7 +177,6 @@ void Building::beginToBuilding(CCObject* obj){
 }
 
 void Building::finishBuilding(){
-	GameResources* res = GameResources::GetInstance();
 	res->getBuildingLayer()->removeChild(_armature);
 	if(buildingType.compare("Castle") == 0){
 		this->initWithFile("castle.png");
@@ -199,7 +193,43 @@ void Building::finishBuilding(){
 	else if(buildingType.compare("DormitoryWrk") == 0){
 		this->initWithFile("dormitory_worker.png");
 	}
+
 	moveBack();
 }
 
+void Building::showInfoMenu()
+{
+	menu = TouchGroup::create();
+	menu->addWidget(GUIReader::shareReader()->widgetFromJsonFile("fixMenu/fixMenu.json"));
 
+	res->getMenuLayer()->addChild(menu,6,20);
+
+	widget = static_cast<UIWidget*>(menu->getWidgetByName("Panel_1"));
+
+	UIImageView* buildingView = static_cast<UIImageView*>(widget->getChildByName("building"));
+
+	if(buildingType.compare("Castle") == 0){
+		buildingView->loadTexture("castle.png");
+	}
+	else if(buildingType.compare("Canteen") == 0){
+		buildingView->loadTexture("canteen.png");
+	}
+	else if(buildingType.compare("ClassRoom") == 0){
+		buildingView->loadTexture("teachBuilding.png");
+	}
+	else if(buildingType.compare("DormitoryStu") == 0){
+		buildingView->loadTexture("dormitory_stu.png");
+	}
+	else if(buildingType.compare("DormitoryWrk") == 0){
+		buildingView->loadTexture("dormitory_worker.png");
+	}
+
+	UIButton* cancelBtn = static_cast<UIButton*>(widget->getChildByName("cancel"));
+	cancelBtn->setTouchEnabled(true);
+	cancelBtn->addTouchEventListener(this,toucheventselector(Building::closeInfoMenu));
+}
+
+void Building::closeInfoMenu()
+{
+	res->getMenuLayer()->removeChildByTag(20);
+}

@@ -23,6 +23,7 @@ static int map[22][22];
 static CCLayer* _mapLayer;
 static CCLayer* _buildingLayer;
 static int _buildingIndex;
+static CCLayer* _menuLayer;
 
 //城堡的位置
 static CCPoint _castleMap;
@@ -52,6 +53,14 @@ GameResources* GameResources::GetInstance() {
 	return instance;
 }
 
+CCLayer* GameResources::getMenuLayer()
+{
+	return _menuLayer;
+}
+void GameResources::setMenuLayer(CCLayer* menuLayer)
+{
+	_menuLayer = menuLayer;
+}
 CCLayer* GameResources::getBuildingLayer()
 {
 	return _buildingLayer;

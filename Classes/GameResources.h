@@ -18,6 +18,8 @@ public:
 	virtual ~GameResources();
 	int getPosValue(int x, int y);
 	void setPosValue(int x, int y, int value);
+	CCLayer* getMenuLayer();
+	void setMenuLayer(CCLayer* menuLayer);
 	CCLayer* getBuildingLayer();
 	void setBuildingLayer(CCLayer* buildingLayer);
 	CCLayer* getMapLayer();

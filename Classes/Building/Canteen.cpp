@@ -7,6 +7,7 @@
 
 #include "Canteen.h"
 #include "cocos-ext.h"
+#include "Building.h"
 
 using namespace cocos2d;
 using namespace cocos2d::extension;
@@ -28,5 +29,5 @@ bool Canteen::init() {
 
 void Canteen::onClick()
 {
-
+	Building::showInfoMenu();
 }
