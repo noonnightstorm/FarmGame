@@ -41,7 +41,6 @@ bool AddBuildingLayer::init(){
 
 	this->addChild(color_layer,6,100);
 
-
 	return true;
 }
 void AddBuildingLayer::registerWithTouchDispatcher()

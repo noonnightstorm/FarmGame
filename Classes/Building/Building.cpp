@@ -200,7 +200,7 @@ void Building::finishBuilding(){
 void Building::showInfoMenu()
 {
 	menu = TouchGroup::create();
-	menu->addWidget(GUIReader::shareReader()->widgetFromJsonFile("fixMenu/fixMenu.json"));
+	menu->addWidget(GUIReader::shareReader()->widgetFromJsonFile("FixMenu/FixMenu.json"));
 
 	res->getMenuLayer()->addChild(menu,6,20);
 
@@ -224,7 +224,7 @@ void Building::showInfoMenu()
 		buildingView->loadTexture("dormitory_worker.png");
 	}
 
-	UIButton* cancelBtn = static_cast<UIButton*>(widget->getChildByName("cancel"));
+	UIButton* cancelBtn = static_cast<UIButton*>(widget->getChildByName("choose"));
 	cancelBtn->setTouchEnabled(true);
 	cancelBtn->addTouchEventListener(this,toucheventselector(Building::closeInfoMenu));
 }
