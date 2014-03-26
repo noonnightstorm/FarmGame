@@ -10,6 +10,7 @@
 #include "Building/Building.h"
 #include "Building/Canteen.h"
 #include "Building/Castle.h"
+#include "Building/ClassRoom.h"
 
 using namespace cocos2d;
 
@@ -37,12 +38,16 @@ bool BuildingsLayer::init(){
 	origin = CCDirector::sharedDirector()->getVisibleOrigin();
 
 	Castle* castle = Castle::create();
-	castle->building(3,4,"Castle");
+	castle->building(3,4);
 	this->addChild(castle,5);
 
-	Canteen* canteen = Canteen::create();
-	canteen->doBuilding(8,1,"Canteen");
+	/*Canteen* canteen = Canteen::create();
+	canteen->doBuilding(8,1);
 	this->addChild(canteen,5);
+
+	ClassRoom* classRoom = ClassRoom::create();
+	classRoom->doBuilding(7,4);
+	this->addChild(classRoom,5);*/
 
 	return true;
 }

@@ -192,12 +192,12 @@ void GameMenuLayer::cancelAddBuilding()
 
 void GameMenuLayer::getNewPosition(CCObject* obj)
 {
-	GameResources* res = GameResources::GetInstance();
+	//这里还需要看看够不够人手
 
+	GameResources* res = GameResources::GetInstance();
 	BuildObject* bobj = (BuildObject*)obj;
 	CCPoint point = bobj->getPosition();
-	if(res->getPosValue(point.x/45, point.y/45)==0) {
-		res->setPosValue(point.x/45, point.y/45, 1);
+	if(res->getPosValue(point.x/45, point.y/45) == 0) {
 		Building* building;
 		if(bobj->getBuildingStr().compare("Canteen") == 0){
 			building = Canteen::create();
@@ -211,10 +211,7 @@ void GameMenuLayer::getNewPosition(CCObject* obj)
 		else if(bobj->getBuildingStr().compare("DormitoryWrk") == 0){
 			building = DormitoryWrk::create();
 		}
-		building->setPosition(point);
-		int _buildingIndex = res->getBuildingIndex();
-		building->setBuildingIndex(_buildingIndex);
-		building->setMapIndex((int)(point.x/45),(int)(point.y/45));
+		building->doBuilding((int)((int)point.x/45),(int)((int)point.y/45));
 		res->getBuildingLayer()->addChild(building,5);
 		res->addBuildingIndex();
 		CCNotificationCenter::sharedNotificationCenter()->postNotification("newPositionFinish",(CCObject*)1);

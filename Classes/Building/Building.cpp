@@ -101,44 +101,26 @@ void Building::onClick()
 {
 }
 
-void Building::building(int MapX,int MapY,string type){
+void Building::building(int MapX,int MapY){
 	CCPoint* point = new CCPoint();
 	point->setPoint(MapX*45,MapY*45);
 	this->setPosition(*point);
 	buildingMap.x = MapX;
 	buildingMap.y = MapY;
-	buildingType = type;
 	buildingIndex = res->getBuildingIndex();
 	res->addBuildingIndex();
 
 	refreshView();
 
-//  冗余代码
-//	if(type.compare("Castle") == 0){
-//		this->initWithFile("castle.png");
-//	}
-//	else if(type.compare("Canteen") == 0){
-//		this->initWithFile("canteen.png");
-//	}
-//	else if(type.compare("ClassRoom") == 0){
-//		this->initWithFile("teachBuilding.png");
-//	}
-//	else if(type.compare("DormitoryStu") == 0){
-//		this->initWithFile("dormitory_stu.png");
-//	}
-//	else if(type.compare("DormitoryWrk") == 0){
-//		this->initWithFile("dormitory_worker.png");
-//	}
 }
 
-void Building::doBuilding(int MapX,int MapY,string type){
+void Building::doBuilding(int MapX,int MapY){
 	//添加地基
 	CCPoint* point = new CCPoint();
 	point->setPoint(MapX*45,MapY*45);
 	this->setPosition(*point);
 	buildingMap.x = MapX;
 	buildingMap.y = MapY;
-	buildingType = type;
 	buildingIndex = res->getBuildingIndex();
 	res->addBuildingIndex();
 
@@ -149,9 +131,9 @@ void Building::doBuilding(int MapX,int MapY,string type){
 
 void Building::moveToBuilding(){
 	CCPoint tmpPoint = res->getCastleMap();
-
 	Worker* worker = Worker::create();
 	worker->setPosition(tmpPoint.x * 45,tmpPoint.y * 45);
+	CCLog("%f %f",tmpPoint.x * 45,tmpPoint.y * 45);
 	res->getBuildingLayer()->addChild(worker,4);
 	worker->BFS((int)tmpPoint.x,(int)tmpPoint.y,(int)buildingMap.x,(int)buildingMap.y,buildingIndex,"beginToBuilding");
 }
@@ -181,26 +163,9 @@ void Building::beginToBuilding(CCObject* obj){
 }
 
 void Building::finishBuilding(){
+	res->setPosValue(buildingMap.x, buildingMap.y, 1);
 	res->getBuildingLayer()->removeChild(_armature);
-
 	refreshView();
-//	冗余
-//	if(buildingType.compare("Castle") == 0){
-//		this->initWithFile("castle.png");
-//	}
-//	else if(buildingType.compare("Canteen") == 0){
-//		this->initWithFile("canteen.png");
-//	}
-//	else if(buildingType.compare("ClassRoom") == 0){
-//		this->initWithFile("teachBuilding.png");
-//	}
-//	else if(buildingType.compare("DormitoryStu") == 0){
-//		this->initWithFile("dormitory_stu.png");
-//	}
-//	else if(buildingType.compare("DormitoryWrk") == 0){
-//		this->initWithFile("dormitory_worker.png");
-//	}
-
 	moveBack();
 }
 
@@ -217,23 +182,6 @@ void Building::showInfoMenu()
 
 	//分派到各个子类初始化
 	infoMenuInit();
-
-//	冗余代码
-//	if(buildingType.compare("Castle") == 0){
-//		buildingView->loadTexture("castle.png");
-//	}
-//	else if(buildingType.compare("Canteen") == 0){
-//		buildingView->loadTexture("canteen.png");
-//	}
-//	else if(buildingType.compare("ClassRoom") == 0){
-//		buildingView->loadTexture("teachBuilding.png");
-//	}
-//	else if(buildingType.compare("DormitoryStu") == 0){
-//		buildingView->loadTexture("dormitory_stu.png");
-//	}
-//	else if(buildingType.compare("DormitoryWrk") == 0){
-//		buildingView->loadTexture("dormitory_worker.png");
-//	}
 
 	UIButton* okBtn = static_cast<UIButton*>(widget->getChildByName("choose"));
 	okBtn->setTouchEnabled(true);

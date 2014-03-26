@@ -30,8 +30,8 @@ public:
 
 	void setMapIndex(int x,int y);
 	void setBuildingIndex(int index);
-	void building(int MapX,int MapY,string type);
-	void doBuilding(int MapX,int MapY,string type);
+	void building(int MapX,int MapY);
+	void doBuilding(int MapX,int MapY);
 	void showInfoMenu();
 	void closeInfoMenu();
 	CREATE_FUNC(Building);
@@ -52,7 +52,6 @@ protected:
 	GameResources* res;
 	CCPoint buildingMap;
 	int buildingIndex;
-	string buildingType;
 	CCArmature* _armature;
 	TouchGroup* menu;
 	UIWidget* widget;

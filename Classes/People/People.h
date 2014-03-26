@@ -51,11 +51,6 @@ protected:
 	//动画变量
 	CCArmature* _armature;
 
-	const static int GO_POSITIVE = 0;
-	const static int GO_NEGATIVE = 1;
-	const static int GO_LEFT = 2;
-	const static int GO_RIGHT = 3;
-
 private:
 	const static int UP = 0;
 	const static int DOWN = 2;

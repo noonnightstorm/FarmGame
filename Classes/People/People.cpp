@@ -149,6 +149,7 @@ void People::BFS(int FX,int FY,int TX,int TY,int index,string info){
 	while(head < tail){
 		f_x = list[head].x;
 		f_y = list[head].y;
+		//CCLog("%d %d | %d %d | %d",f_x,f_y,TX,TY,head);
 		if(f_x == TX && f_y == TY){
 			findPath(head);
 			move();
