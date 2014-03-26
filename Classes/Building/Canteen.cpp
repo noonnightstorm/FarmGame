@@ -31,3 +31,11 @@ void Canteen::onClick()
 {
 	Building::showInfoMenu();
 }
+void Canteen::infoMenuInit()
+{
+	buildingView->loadTexture("canteen.png");
+}
+void Canteen::refreshView()
+{
+	this->initWithFile("canteen.png");
+}

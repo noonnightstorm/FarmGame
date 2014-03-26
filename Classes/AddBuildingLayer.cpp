@@ -33,7 +33,6 @@ bool AddBuildingLayer::init(){
 	winSize = CCDirector::sharedDirector()->getVisibleSize();
 	origin = CCDirector::sharedDirector()->getVisibleOrigin();
 
-	//这个空白层是不是可以考虑放到AddBuildingLayer呢？
 	ccColor4B color = ccc4(220, 220, 220, 150);
 	CCLayerColor* color_layer = CCLayerColor::create(color);
 	color_layer->setPosition(ccp(0,0));

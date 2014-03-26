@@ -21,6 +21,9 @@ public:
 
 	void onClick();
 
+	void infoMenuInit();
+	void refreshView();
+
 	CREATE_FUNC(Canteen);
 };
 

@@ -26,4 +26,15 @@ bool DormitoryStu::init() {
 	Building::init();
 	return true;
 }
-
+void DormitoryStu::onClick()
+{
+	Building::showInfoMenu();
+}
+void DormitoryStu::infoMenuInit()
+{
+	buildingView->loadTexture("dormitory_stu.png");
+}
+void DormitoryStu::refreshView()
+{
+	this->initWithFile("dormitory_stu.png");
+}

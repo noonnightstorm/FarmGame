@@ -19,6 +19,11 @@ public:
 	virtual ~ClassRoom();
 	bool init();
 
+	void onClick();
+
+	void infoMenuInit();
+	void refreshView();
+
 	CREATE_FUNC(ClassRoom);
 };
 

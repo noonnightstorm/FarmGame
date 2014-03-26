@@ -26,3 +26,15 @@ bool ClassRoom::init() {
 	Building::init();
 	return true;
 }
+void ClassRoom::onClick()
+{
+	Building::showInfoMenu();
+}
+void ClassRoom::infoMenuInit()
+{
+	buildingView->loadTexture("teachBuilding.png");
+}
+void ClassRoom::refreshView()
+{
+	this->initWithFile("teachBuilding.png");
+}

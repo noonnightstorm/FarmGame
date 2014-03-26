@@ -45,6 +45,9 @@ public:
 
 	virtual void onClick();
 
+	virtual void infoMenuInit();
+	virtual void refreshView();
+
 protected:
 	GameResources* res;
 	CCPoint buildingMap;
@@ -53,6 +56,7 @@ protected:
 	CCArmature* _armature;
 	TouchGroup* menu;
 	UIWidget* widget;
+	UIImageView* buildingView;
 
 private:
 	void moveToBuilding();

@@ -26,4 +26,15 @@ bool DormitoryWrk::init() {
 	Building::init();
 	return true;
 }
-
+void DormitoryWrk::onClick()
+{
+	Building::showInfoMenu();
+}
+void DormitoryWrk::infoMenuInit()
+{
+	buildingView->loadTexture("dormitory_worker.png");
+}
+void DormitoryWrk::refreshView()
+{
+	this->initWithFile("dormitory_worker.png");
+}

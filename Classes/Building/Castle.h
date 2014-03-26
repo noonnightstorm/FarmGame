@@ -19,6 +19,9 @@ public:
 	virtual ~Castle();
 	bool init();
 
+	void infoMenuInit();
+	void refreshView();
+
 	CREATE_FUNC(Castle);
 };
 

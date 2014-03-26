@@ -27,3 +27,11 @@ bool Castle::init() {
 	return true;
 }
 
+void Castle::refreshView()
+{
+	this->initWithFile("castle.png");
+}
+void Castle::infoMenuInit()
+{
+
+}

@@ -57,9 +57,10 @@ void Building::setBuildingIndex(int index){
 
 void Building::onEnter()
 {
+	//注册触摸方法，为调试方便暂时放在这里实现
 	CCDirector* pDirector = CCDirector::sharedDirector();
-		//添加一个触摸委托给dispatcher的列表,委托对象this,
-		pDirector->getTouchDispatcher()->addTargetedDelegate(this, 0, false);
+	//添加一个触摸委托给dispatcher的列表,委托对象this,
+	pDirector->getTouchDispatcher()->addTargetedDelegate(this, 0, false);
 	CCSprite::onEnter();
 }
 
@@ -110,21 +111,24 @@ void Building::building(int MapX,int MapY,string type){
 	buildingIndex = res->getBuildingIndex();
 	res->addBuildingIndex();
 
-	if(type.compare("Castle") == 0){
-		this->initWithFile("castle.png");
-	}
-	else if(type.compare("Canteen") == 0){
-		this->initWithFile("canteen.png");
-	}
-	else if(type.compare("ClassRoom") == 0){
-		this->initWithFile("teachBuilding.png");
-	}
-	else if(type.compare("DormitoryStu") == 0){
-		this->initWithFile("dormitory_stu.png");
-	}
-	else if(type.compare("DormitoryWrk") == 0){
-		this->initWithFile("dormitory_worker.png");
-	}
+	refreshView();
+
+//  冗余代码
+//	if(type.compare("Castle") == 0){
+//		this->initWithFile("castle.png");
+//	}
+//	else if(type.compare("Canteen") == 0){
+//		this->initWithFile("canteen.png");
+//	}
+//	else if(type.compare("ClassRoom") == 0){
+//		this->initWithFile("teachBuilding.png");
+//	}
+//	else if(type.compare("DormitoryStu") == 0){
+//		this->initWithFile("dormitory_stu.png");
+//	}
+//	else if(type.compare("DormitoryWrk") == 0){
+//		this->initWithFile("dormitory_worker.png");
+//	}
 }
 
 void Building::doBuilding(int MapX,int MapY,string type){
@@ -178,21 +182,24 @@ void Building::beginToBuilding(CCObject* obj){
 
 void Building::finishBuilding(){
 	res->getBuildingLayer()->removeChild(_armature);
-	if(buildingType.compare("Castle") == 0){
-		this->initWithFile("castle.png");
-	}
-	else if(buildingType.compare("Canteen") == 0){
-		this->initWithFile("canteen.png");
-	}
-	else if(buildingType.compare("ClassRoom") == 0){
-		this->initWithFile("teachBuilding.png");
-	}
-	else if(buildingType.compare("DormitoryStu") == 0){
-		this->initWithFile("dormitory_stu.png");
-	}
-	else if(buildingType.compare("DormitoryWrk") == 0){
-		this->initWithFile("dormitory_worker.png");
-	}
+
+	refreshView();
+//	冗余
+//	if(buildingType.compare("Castle") == 0){
+//		this->initWithFile("castle.png");
+//	}
+//	else if(buildingType.compare("Canteen") == 0){
+//		this->initWithFile("canteen.png");
+//	}
+//	else if(buildingType.compare("ClassRoom") == 0){
+//		this->initWithFile("teachBuilding.png");
+//	}
+//	else if(buildingType.compare("DormitoryStu") == 0){
+//		this->initWithFile("dormitory_stu.png");
+//	}
+//	else if(buildingType.compare("DormitoryWrk") == 0){
+//		this->initWithFile("dormitory_worker.png");
+//	}
 
 	moveBack();
 }
@@ -206,30 +213,43 @@ void Building::showInfoMenu()
 
 	widget = static_cast<UIWidget*>(menu->getWidgetByName("Panel_1"));
 
-	UIImageView* buildingView = static_cast<UIImageView*>(widget->getChildByName("building"));
+	buildingView = static_cast<UIImageView*>(widget->getChildByName("building"));
 
-	if(buildingType.compare("Castle") == 0){
-		buildingView->loadTexture("castle.png");
-	}
-	else if(buildingType.compare("Canteen") == 0){
-		buildingView->loadTexture("canteen.png");
-	}
-	else if(buildingType.compare("ClassRoom") == 0){
-		buildingView->loadTexture("teachBuilding.png");
-	}
-	else if(buildingType.compare("DormitoryStu") == 0){
-		buildingView->loadTexture("dormitory_stu.png");
-	}
-	else if(buildingType.compare("DormitoryWrk") == 0){
-		buildingView->loadTexture("dormitory_worker.png");
-	}
+	//分派到各个子类初始化
+	infoMenuInit();
 
-	UIButton* cancelBtn = static_cast<UIButton*>(widget->getChildByName("choose"));
-	cancelBtn->setTouchEnabled(true);
-	cancelBtn->addTouchEventListener(this,toucheventselector(Building::closeInfoMenu));
+//	冗余代码
+//	if(buildingType.compare("Castle") == 0){
+//		buildingView->loadTexture("castle.png");
+//	}
+//	else if(buildingType.compare("Canteen") == 0){
+//		buildingView->loadTexture("canteen.png");
+//	}
+//	else if(buildingType.compare("ClassRoom") == 0){
+//		buildingView->loadTexture("teachBuilding.png");
+//	}
+//	else if(buildingType.compare("DormitoryStu") == 0){
+//		buildingView->loadTexture("dormitory_stu.png");
+//	}
+//	else if(buildingType.compare("DormitoryWrk") == 0){
+//		buildingView->loadTexture("dormitory_worker.png");
+//	}
+
+	UIButton* okBtn = static_cast<UIButton*>(widget->getChildByName("choose"));
+	okBtn->setTouchEnabled(true);
+	okBtn->addTouchEventListener(this,toucheventselector(Building::closeInfoMenu));
 }
 
 void Building::closeInfoMenu()
 {
 	res->getMenuLayer()->removeChildByTag(20);
+}
+
+void Building::infoMenuInit()
+{
+
+}
+void Building::refreshView()
+{
+
 }

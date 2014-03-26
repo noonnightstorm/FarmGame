@@ -18,6 +18,11 @@ public:
 	DormitoryWrk();
 	virtual ~DormitoryWrk();
 
+	void onClick();
+
+	void infoMenuInit();
+	void refreshView();
+
 	bool init();
 
 	CREATE_FUNC(DormitoryWrk);

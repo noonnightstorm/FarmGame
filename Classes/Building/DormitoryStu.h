@@ -19,6 +19,11 @@ public:
 	virtual ~DormitoryStu();
 	bool init();
 
+	void onClick();
+
+	void infoMenuInit();
+	void refreshView();
+
 	CREATE_FUNC(DormitoryStu);
 };
 
