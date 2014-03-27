@@ -159,18 +159,22 @@ void GameMenuLayer::showConfirmMenu(CCObject *pSender, TouchEventType type)
 	if(pSender==m_b1) {
 		im_buildingView->loadTexture("canteen.png");
 		bType = "Canteen";
+		initConfirmMenu("简介","100","50","4",infoMenu);
 	}
 	else if(pSender==m_b2) {
 		im_buildingView->loadTexture("teachBuilding.png");
 		bType = "ClassRoom";
+		initConfirmMenu("简介","150","20","8",infoMenu);
 	}
 	else if(pSender==m_b3) {
 		im_buildingView->loadTexture("dormitory_stu.png");
 		bType = "DormitoryStu";
+		initConfirmMenu("简介","60","10","4",infoMenu);
 	}
 	else if(pSender==m_b4) {
 		im_buildingView->loadTexture("dormitory_worker.png");
 		bType = "DormitoryWrk";
+		initConfirmMenu("简介","50","50","4",infoMenu);
 	}
 
 	UIButton* im_crossBtn = static_cast<UIButton*>(infoMenu->getWidgetByName("crossBtn"));
@@ -238,4 +242,16 @@ void GameMenuLayer::finishBuild(CCObject* obj)
 void GameMenuLayer::closeTips()
 {
 	temp->removeChildByTag(101);
+}
+void GameMenuLayer::initConfirmMenu(string about, string price, string wood, string maxPeople, TouchGroup* menu)
+{
+	UILabel* l_about = static_cast<UILabel*>(menu->getWidgetByName("about"));
+	UILabel* l_price = static_cast<UILabel*>(menu->getWidgetByName("price"));
+	UILabel* l_wood = static_cast<UILabel*>(menu->getWidgetByName("wood"));
+	UILabel* l_maxPeople = static_cast<UILabel*>(menu->getWidgetByName("people"));
+
+	l_about->setText(about);
+	l_price->setText(price);
+	l_wood->setText(wood);
+	l_maxPeople->setText(maxPeople);
 }

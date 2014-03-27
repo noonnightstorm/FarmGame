@@ -34,6 +34,8 @@ public:
 	void doBuilding(int MapX,int MapY);
 	void showInfoMenu();
 	void closeInfoMenu();
+	void setInfoMenu(string about, string price, string wood, string maxPeople, string currentPeople);
+	void setPeople(string num);
 	CREATE_FUNC(Building);
 
 	virtual bool ccTouchBegan(CCTouch* touch, CCEvent* event);//按下

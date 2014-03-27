@@ -34,11 +34,14 @@ void Canteen::onClick()
 }
 void Canteen::infoMenuInit()
 {
+	CCLog("ok");
 	buildingView->loadTexture("canteen.png");
 	sub_btn->setTouchEnabled(true);
 	sub_btn->addTouchEventListener(this,toucheventselector(Canteen::goBackToCastle));
 	add_btn->setTouchEnabled(true);
 	add_btn->addTouchEventListener(this,toucheventselector(Canteen::goToWork));
+
+	Building::setInfoMenu("这是饭堂","100","50","4","2");
 
 }
 void Canteen::refreshView()

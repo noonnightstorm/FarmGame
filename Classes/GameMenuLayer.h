@@ -37,6 +37,7 @@ public:
 	void getNewPosition(CCObject* obj);
 	void finishBuild(CCObject* obj);
 	void closeTips();
+	void initConfirmMenu(string about, string price, string wood, string maxPeople, TouchGroup* menu);
 	CREATE_FUNC(GameMenuLayer);
 
 private:

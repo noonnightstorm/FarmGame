@@ -193,10 +193,28 @@ void Building::closeInfoMenu()
 {
 	res->getMenuLayer()->removeChildByTag(20);
 }
-
 void Building::infoMenuInit()
 {
 
+}
+void Building::setInfoMenu(string about, string price, string wood, string maxPeople, string currentPeople)
+{
+	UILabel* l_about = static_cast<UILabel*>(menu->getWidgetByName("introduce"));
+	UILabel* l_price = static_cast<UILabel*>(menu->getWidgetByName("price"));
+	UILabel* l_wood = static_cast<UILabel*>(menu->getWidgetByName("wood"));
+	UILabel* l_maxPeople = static_cast<UILabel*>(menu->getWidgetByName("maxPeople"));
+
+	l_about->setText(about);
+	l_price->setText(price);
+	l_wood->setText(wood);
+	l_maxPeople->setText(maxPeople);
+
+	setPeople(currentPeople);
+}
+void Building::setPeople(string num)
+{
+	UILabel* peopleNum = static_cast<UILabel*>(menu->getWidgetByName("peopleNum"));
+	peopleNum->setText(num);
 }
 void Building::refreshView()
 {
