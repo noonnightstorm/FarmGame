@@ -43,6 +43,7 @@ bool Building::init() {
 	}
 	this->initWithFile("building.png");
 	GameResources* res = GameResources::GetInstance();
+	worker = 0;
 	return true;
 }
 
@@ -133,13 +134,12 @@ void Building::moveToBuilding(){
 	CCPoint tmpPoint = res->getCastleMap();
 	Worker* worker = Worker::create();
 	worker->setPosition(tmpPoint.x * 45,tmpPoint.y * 45);
-	CCLog("%f %f",tmpPoint.x * 45,tmpPoint.y * 45);
 	res->getBuildingLayer()->addChild(worker,4);
 	worker->BFS((int)tmpPoint.x,(int)tmpPoint.y,(int)buildingMap.x,(int)buildingMap.y,buildingIndex,"beginToBuilding");
+	res->setPosValue(buildingMap.x, buildingMap.y, 1);
 }
 void Building::moveBack(){
 	CCPoint tmpPoint = res->getCastleMap();
-
 	Worker* worker = Worker::create();
 	worker->setPosition(buildingMap.x * 45,buildingMap.y * 45);
 	res->getBuildingLayer()->addChild(worker,4);
@@ -163,7 +163,6 @@ void Building::beginToBuilding(CCObject* obj){
 }
 
 void Building::finishBuilding(){
-	res->setPosValue(buildingMap.x, buildingMap.y, 1);
 	res->getBuildingLayer()->removeChild(_armature);
 	refreshView();
 	moveBack();
@@ -179,6 +178,8 @@ void Building::showInfoMenu()
 	widget = static_cast<UIWidget*>(menu->getWidgetByName("Panel_1"));
 
 	buildingView = static_cast<UIImageView*>(widget->getChildByName("building"));
+	sub_btn = static_cast<UIButton*>(widget->getChildByName("sub"));
+	add_btn = static_cast<UIButton*>(widget->getChildByName("plus"));
 
 	//分派到各个子类初始化
 	infoMenuInit();
@@ -198,6 +199,14 @@ void Building::infoMenuInit()
 
 }
 void Building::refreshView()
+{
+
+}
+void Building::goToWork()
+{
+
+}
+void Building::goBackToCastle()
 {
 
 }

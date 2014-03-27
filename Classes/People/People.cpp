@@ -151,6 +151,7 @@ void People::BFS(int FX,int FY,int TX,int TY,int index,string info){
 		f_y = list[head].y;
 		//CCLog("%d %d | %d %d | %d",f_x,f_y,TX,TY,head);
 		if(f_x == TX && f_y == TY){
+			//CCLog("findPath");
 			findPath(head);
 			move();
 			return ;
@@ -212,6 +213,14 @@ void People::moveEnded(){
 		res->getBuildingLayer()->removeChild(this,true);
 	}
 	else if(workInfo.compare("moveBack") == 0){
+		GameResources* res = GameResources::GetInstance();
+		res->getBuildingLayer()->removeChild(this,true);
+	}
+	else if(workInfo.compare("goToWork") == 0){
+		GameResources* res = GameResources::GetInstance();
+		res->getBuildingLayer()->removeChild(this,true);
+	}
+	else if(workInfo.compare("goBackToCastle") == 0){
 		GameResources* res = GameResources::GetInstance();
 		res->getBuildingLayer()->removeChild(this,true);
 	}

@@ -28,7 +28,7 @@ bool DormitoryWrk::init() {
 }
 void DormitoryWrk::onClick()
 {
-	Building::showInfoMenu();
+	//Building::showInfoMenu();
 }
 void DormitoryWrk::infoMenuInit()
 {

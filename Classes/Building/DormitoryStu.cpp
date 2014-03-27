@@ -28,7 +28,7 @@ bool DormitoryStu::init() {
 }
 void DormitoryStu::onClick()
 {
-	Building::showInfoMenu();
+	//Building::showInfoMenu();
 }
 void DormitoryStu::infoMenuInit()
 {

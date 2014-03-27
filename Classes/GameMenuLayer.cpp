@@ -53,10 +53,14 @@ bool GameMenuLayer::init() {
 	food_num_label->setStringValue("150");
 	money_num_label = static_cast<UILabelAtlas*>(widget->getChildByName("money_num"));
 	money_num_label->setStringValue("150");
-	worker_num_label = static_cast<UILabelAtlas*>(widget->getChildByName("worker_num"));
-	worker_num_label->setStringValue("2");
-	student_num_label = static_cast<UILabelAtlas*>(widget->getChildByName("student_num"));
-	student_num_label->setStringValue("2");
+	worker_free_num_label = static_cast<UILabelAtlas*>(widget->getChildByName("worker_free_num"));
+	worker_free_num_label->setStringValue("2");
+	student_free_num_label = static_cast<UILabelAtlas*>(widget->getChildByName("student_free_num"));
+	student_free_num_label->setStringValue("2");
+	worker_total_num_label = static_cast<UILabelAtlas*>(widget->getChildByName("worker_totle_num"));
+	worker_total_num_label->setStringValue("5");
+	student_total_num_label = static_cast<UILabelAtlas*>(widget->getChildByName("student_totle_num"));
+	student_total_num_label->setStringValue("5");
 	menu_btn = static_cast<UIButton*>(widget->getChildByName("menu"));
 	menu_btn->setTouchEnabled(true);
 	menu_btn->addTouchEventListener(this,toucheventselector(GameMenuLayer::showMenu));

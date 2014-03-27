@@ -24,6 +24,9 @@ public:
 	void infoMenuInit();
 	void refreshView();
 
+	void goToWork(CCObject *pSender, TouchEventType type);
+	void goBackToCastle(CCObject *pSender, TouchEventType type);
+
 	CREATE_FUNC(Canteen);
 };
 

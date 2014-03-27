@@ -48,14 +48,24 @@ public:
 	virtual void infoMenuInit();
 	virtual void refreshView();
 
+	virtual void goToWork();
+	virtual void goBackToCastle();
+
 protected:
+	//单例
 	GameResources* res;
+	//建筑的变量
 	CCPoint buildingMap;
 	int buildingIndex;
+	int worker;
+	//动画
 	CCArmature* _armature;
+	//菜单组件
 	TouchGroup* menu;
 	UIWidget* widget;
 	UIImageView* buildingView;
+	UIButton* sub_btn;
+	UIButton* add_btn;
 
 private:
 	void moveToBuilding();

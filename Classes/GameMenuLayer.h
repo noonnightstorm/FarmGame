@@ -47,8 +47,10 @@ private:
 	UIImageView* menuBtn;
 	UILabelAtlas* food_num_label;
 	UILabelAtlas* money_num_label;
-	UILabelAtlas* student_num_label;
-	UILabelAtlas* worker_num_label;
+	UILabelAtlas* student_free_num_label;
+	UILabelAtlas* worker_free_num_label;
+	UILabelAtlas* student_total_num_label;
+	UILabelAtlas* worker_total_num_label;
 	UIButton* menu_btn;
 	UIButton* m_backBtn;
 	UIButton* m_b1;
