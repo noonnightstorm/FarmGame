@@ -159,22 +159,22 @@ void GameMenuLayer::showConfirmMenu(CCObject *pSender, TouchEventType type)
 	if(pSender==m_b1) {
 		im_buildingView->loadTexture("canteen.png");
 		bType = "Canteen";
-		initConfirmMenu("简介","100","50","4",infoMenu);
+		initConfirmMenu("简介","80","0","5",infoMenu);
 	}
 	else if(pSender==m_b2) {
 		im_buildingView->loadTexture("teachBuilding.png");
 		bType = "ClassRoom";
-		initConfirmMenu("简介","150","20","8",infoMenu);
+		initConfirmMenu("简介","100","0","10",infoMenu);
 	}
 	else if(pSender==m_b3) {
 		im_buildingView->loadTexture("dormitory_stu.png");
 		bType = "DormitoryStu";
-		initConfirmMenu("简介","60","10","4",infoMenu);
+		initConfirmMenu("简介","30","0","5",infoMenu);
 	}
 	else if(pSender==m_b4) {
 		im_buildingView->loadTexture("dormitory_worker.png");
 		bType = "DormitoryWrk";
-		initConfirmMenu("简介","50","50","4",infoMenu);
+		initConfirmMenu("简介","35","0","5",infoMenu);
 	}
 
 	UIButton* im_crossBtn = static_cast<UIButton*>(infoMenu->getWidgetByName("crossBtn"));

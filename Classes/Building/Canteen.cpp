@@ -25,6 +25,7 @@ Canteen::~Canteen() {
 
 bool Canteen::init() {
 	Building::init();
+
 	return true;
 }
 
@@ -34,14 +35,16 @@ void Canteen::onClick()
 }
 void Canteen::infoMenuInit()
 {
-	CCLog("ok");
 	buildingView->loadTexture("canteen.png");
 	sub_btn->setTouchEnabled(true);
 	sub_btn->addTouchEventListener(this,toucheventselector(Canteen::goBackToCastle));
 	add_btn->setTouchEnabled(true);
 	add_btn->addTouchEventListener(this,toucheventselector(Canteen::goToWork));
 
-	Building::setInfoMenu("这是饭堂","100","50","4","2");
+	char temp_worker_char[100];
+	sprintf(temp_worker_char, "%d", worker);
+
+	Building::setInfoMenu("华农饭堂:高品质不解释。","80","0","5",temp_worker_char);
 
 }
 void Canteen::refreshView()

@@ -30,6 +30,11 @@ bool ClassRoom::init() {
 void ClassRoom::onClick()
 {
 	Building::showInfoMenu();
+
+	char temp_worker_char[100];
+	sprintf(temp_worker_char, "%d", worker);
+
+	Building::setInfoMenu("第三教学楼:人才辈出处。","100","0","10",temp_worker_char);
 }
 void ClassRoom::infoMenuInit()
 {

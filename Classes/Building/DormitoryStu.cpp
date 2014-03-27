@@ -33,6 +33,10 @@ void DormitoryStu::onClick()
 void DormitoryStu::infoMenuInit()
 {
 	buildingView->loadTexture("dormitory_stu.png");
+	char temp_worker_char[100];
+	sprintf(temp_worker_char, "%d", worker);
+
+	Building::setInfoMenu("学生宿舍。","30","0","5",temp_worker_char);
 }
 void DormitoryStu::refreshView()
 {
